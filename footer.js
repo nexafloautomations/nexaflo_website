@@ -41,6 +41,8 @@
                     <a href="terms-of-service.html" class="text-white opacity-60 hover:opacity-100 hover:text-cyan-300 transition-all">Terms of Service</a>
                     <span class="text-white opacity-30 hidden sm:inline">|</span>
                     <a href="data-deletion.html" class="text-white opacity-60 hover:opacity-100 hover:text-cyan-300 transition-all">Data Deletion</a>
+                    <span class="text-white opacity-30 hidden sm:inline">|</span>
+                    <a href="refund-policy.html" class="text-white opacity-60 hover:opacity-100 hover:text-cyan-300 transition-all">Refund & Cancellation Policy</a>
                 </div>
             </div>
         </div>
