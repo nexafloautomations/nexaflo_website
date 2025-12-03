@@ -50,6 +50,11 @@
             </div>
         </div>
 
+        <!-- WhatsApp Button -->
+        <a href="https://wa.me/message/A4XUNKK73VJWK1" target="_blank" class="mb-4 w-14 h-14 rounded-full shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 bg-green-500 hover:bg-green-600 text-white" aria-label="Chat on WhatsApp">
+            <i class="fab fa-whatsapp text-3xl"></i>
+        </a>
+
         <!-- Toggle Button -->
         <button id="chat-toggle" type="button" class="gradient-cyan-blue text-white w-14 h-14 rounded-full shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110" style="background: linear-gradient(to right, #06b6d4, #2563eb);">
             <i id="chat-icon" class="fas fa-comment-alt text-xl"></i>
