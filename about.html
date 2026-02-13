@@ -178,8 +178,9 @@
                         class="md:col-span-2 bg-gradient-to-br from-purple-600 to-cyan-500 flex items-center justify-center p-12">
                         <div class="text-center">
                             <div
-                                class="w-32 h-32 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-white/40">
-                                <i class="fas fa-user text-white text-6xl"></i>
+                                class="w-40 h-40 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-white/40 overflow-hidden shadow-2xl">
+                                <img src="https://media.licdn.com/dms/image/v2/D5603AQGx9KFbRUdHfA/profile-displayphoto-scale_400_400/B56ZfTo5GGG0Ak-/0/1751602403405?e=1772668800&v=beta&t=G6mKTG-7OeypSYlf-LkrIyqyTVVgxLLREe6nIeom7TA"
+                                    alt="Devansh Seth" class="w-full h-full object-cover">
                             </div>
                             <h3 class="text-3xl font-bold text-white mb-2">Devansh Seth</h3>
                             <p class="text-white/90 text-lg">Founder & CEO</p>
@@ -241,47 +242,82 @@
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Vision Card 1 -->
-                <div
-                    class="bg-gradient-to-br from-cyan-50 to-blue-50 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
-                    <div
-                        class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-lightbulb text-white text-2xl"></i>
+            <!-- Vertical Progress Bar / Timeline -->
+            <div class="relative z-10">
+                <div id="timeline-container" class="max-w-5xl mx-auto relative pb-20">
+                    <!-- Vertical Line Background (Gray/Light) -->
+                    <div id="timeline-line-bg"
+                        class="absolute left-8 md:left-1/2 w-1 bg-gray-100 transform -translate-x-1/2 rounded-full z-0">
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Problem-First Approach</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        We don't build technology for technology's sake. We identify real pain points and craft
-                        solutions that deliver measurable impact.
-                    </p>
-                </div>
 
-                <!-- Vision Card 2 -->
-                <div
-                    class="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
-                    <div
-                        class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-users text-white text-2xl"></i>
+                    <!-- Vertical Line Progress (Colored) -->
+                    <div id="timeline-progress"
+                        class="absolute left-8 md:left-1/2 w-1 bg-gradient-to-b from-cyan-500 via-purple-500 to-orange-500 transform -translate-x-1/2 rounded-full z-0 h-0">
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">People-Centered Design</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Our solutions are built with empathy—designed to empower individuals, reduce friction, and make
-                        work more meaningful.
-                    </p>
-                </div>
 
-                <!-- Vision Card 3 -->
-                <div
-                    class="bg-gradient-to-br from-orange-50 to-yellow-50 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
-                    <div
-                        class="w-16 h-16 bg-gradient-to-r from-orange-500 to-yellow-600 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-rocket text-white text-2xl"></i>
+                    <!-- Step 1: Problem-First Approach -->
+                    <div class="timeline-step relative z-10 flex flex-col md:flex-row items-center mb-24 group">
+                        <div class="md:w-1/2 md:pr-12 pl-20 md:pl-0 w-full">
+                            <div
+                                class="step-card bg-white p-6 rounded-2xl shadow-lg border border-gray-100 transform transition-all duration-500 md:text-right relative overflow-hidden opacity-50 translate-y-4">
+                                <div
+                                    class="absolute top-0 right-0 w-20 h-20 bg-cyan-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110">
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-2 relative z-10">Problem-First Approach
+                                </h3>
+                                <p class="text-gray-600 relative z-10">We don't build technology for technology's
+                                    sake. We identify real pain points and craft solutions that deliver measurable
+                                    impact.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="step-icon absolute left-8 md:left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-4 border-gray-200 rounded-full flex items-center justify-center shadow-lg z-20 transition-all duration-500">
+                            <i class="fas fa-lightbulb text-gray-400 text-lg transition-colors duration-500"></i>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Scalable Innovation</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        We build proprietary products that serve entire industries—creating value at scale, not just for
-                        one client at a time.
-                    </p>
+
+                    <!-- Step 2: People-Centered Design -->
+                    <div class="timeline-step relative z-10 flex flex-col md:flex-row items-center mb-24 group">
+                        <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
+                        <div
+                            class="step-icon absolute left-8 md:left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-4 border-gray-200 rounded-full flex items-center justify-center shadow-lg z-20 transition-all duration-500">
+                            <i class="fas fa-users text-gray-400 text-lg transition-colors duration-500"></i>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 pl-20 w-full">
+                            <div
+                                class="step-card bg-white p-6 rounded-2xl shadow-lg border border-gray-100 transform transition-all duration-500 relative overflow-hidden opacity-50 translate-y-4">
+                                <div
+                                    class="absolute top-0 left-0 w-20 h-20 bg-purple-50 rounded-br-full -ml-4 -mt-4 transition-transform group-hover:scale-110">
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-2 relative z-10">People-Centered
+                                    Design</h3>
+                                <p class="text-gray-600 relative z-10">Our solutions are built with empathy—designed
+                                    to empower individuals, reduce friction, and make work more meaningful.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Scalable Innovation -->
+                    <div class="timeline-step relative z-10 flex flex-col md:flex-row items-center group">
+                        <div class="md:w-1/2 md:pr-12 pl-20 md:pl-0 w-full">
+                            <div
+                                class="step-card bg-white p-6 rounded-2xl shadow-lg border border-gray-100 transform transition-all duration-500 md:text-right relative overflow-hidden opacity-50 translate-y-4">
+                                <div
+                                    class="absolute top-0 right-0 w-20 h-20 bg-orange-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110">
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-2 relative z-10">Scalable Innovation
+                                </h3>
+                                <p class="text-gray-600 relative z-10">We build proprietary products that serve entire
+                                    industries—creating value at scale, not just for one client at a time.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="step-icon absolute left-8 md:left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-4 border-gray-200 rounded-full flex items-center justify-center shadow-lg z-20 transition-all duration-500">
+                            <i class="fas fa-rocket text-gray-400 text-lg transition-colors duration-500"></i>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -311,6 +347,78 @@
     <!-- Footer will be injected here -->
     <script src="footer.js"></script>
 
+    <script>
+        // Hero Animation
+        const heroSection = document.getElementById('hero');
+        if (heroSection) {
+            heroSection.style.opacity = '1';
+            heroSection.style.transform = 'translateY(0)';
+        }
+
+        // Timeline Animation
+        document.addEventListener('DOMContentLoaded', function () {
+            const timelineContainer = document.getElementById('timeline-container');
+            const timelineProgress = document.getElementById('timeline-progress');
+            const steps = document.querySelectorAll('.timeline-step');
+
+            function updateTimeline() {
+                if (!timelineContainer) return;
+                const containerRect = timelineContainer.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                const triggerPoint = windowHeight * 0.7; // Trigger when 70% down the viewport
+
+                // Calculate progress
+                let progress = 0;
+                if (containerRect.top < triggerPoint) {
+                    const totalHeight = containerRect.height;
+                    const scrolled = triggerPoint - containerRect.top;
+                    progress = Math.min(Math.max((scrolled / totalHeight) * 100, 0), 100);
+                }
+
+                if (timelineProgress) timelineProgress.style.height = `${progress}%`;
+
+                // Update steps
+                steps.forEach((step, index) => {
+                    const stepRect = step.getBoundingClientRect();
+                    const icon = step.querySelector('.step-icon');
+                    const card = step.querySelector('.step-card');
+                    const iconI = icon.querySelector('i');
+
+                    // Colors for each step
+                    const colors = [
+                        { border: 'border-cyan-500', text: 'text-cyan-600' },
+                        { border: 'border-purple-500', text: 'text-purple-600' },
+                        { border: 'border-orange-500', text: 'text-orange-600' }
+                    ];
+
+                    if (stepRect.top < triggerPoint) {
+                        // Active State
+                        card.classList.remove('opacity-50', 'translate-y-4');
+                        card.classList.add('opacity-100', 'translate-y-0');
+
+                        icon.classList.remove('border-gray-200');
+                        icon.classList.add(colors[index].border, 'scale-110');
+
+                        iconI.classList.remove('text-gray-400');
+                        iconI.classList.add(colors[index].text);
+                    } else {
+                        // Inactive State
+                        card.classList.add('opacity-50', 'translate-y-4');
+                        card.classList.remove('opacity-100', 'translate-y-0');
+
+                        icon.classList.add('border-gray-200');
+                        icon.classList.remove(colors[index].border, 'scale-110');
+
+                        iconI.classList.add('text-gray-400');
+                        iconI.classList.remove(colors[index].text);
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateTimeline);
+            updateTimeline(); // Initial check
+        });
+    </script>
 </body>
 
 </html>
