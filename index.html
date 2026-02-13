@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexaflo Automations - AI-Powered Automation Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(to bottom right, #22d3ee, #3b82f6, #8b5cf6);
+        }
+
+        .contact-gradient {
+            background: linear-gradient(to bottom right, #06b6d4, #2563eb, #7c3aed);
+        }
+
+        .footer-gradient {
+            background: linear-gradient(to right, #312e81, #7c3aed, #312e81);
+        }
+
+        .scrollbar-hide {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animations */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .animate-float {
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        /* Hover effects */
+        .btn-hover {
+            transition: all 0.3s ease;
+        }
+
+        .btn-hover:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Backdrop blur */
+        .backdrop-blur {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Custom gradients for service cards */
+        .gradient-orange {
+            background: linear-gradient(to right, #fb923c, #ea580c);
+        }
+
+        .gradient-teal {
+            background: linear-gradient(to right, #2dd4bf, #0d9488);
+        }
+
+        .gradient-purple {
+            background: linear-gradient(to right, #a855f7, #7c3aed);
+        }
+
+        .gradient-pink {
+            background: linear-gradient(to right, #ec4899, #db2777);
+        }
+
+        .gradient-red {
+            background: linear-gradient(to right, #f87171, #dc2626);
+        }
+
+        .gradient-orange-dark {
+            background: linear-gradient(to right, #ea580c, #c2410c);
+        }
+
+        .gradient-teal-dark {
+            background: linear-gradient(to right, #0d9488, #0f766e);
+        }
+
+        .gradient-purple-dark {
+            background: linear-gradient(to right, #7c3aed, #6d28d9);
+        }
+
+        .gradient-pink-dark {
+            background: linear-gradient(to right, #db2777, #be185d);
+        }
+
+        .gradient-red-dark {
+            background: linear-gradient(to right, #dc2626, #b91c1c);
+        }
+
+        /* Features gradients */
+        .gradient-cyan-blue {
+            background: linear-gradient(to right, #06b6d4, #2563eb);
+        }
+
+        .gradient-blue-purple {
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+        }
+
+        .gradient-purple-pink {
+            background: linear-gradient(to right, #8b5cf6, #ec4899);
+        }
+
+        /* Social Media Icons */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.15);
+        }
+
+        .social-icons i {
+            font-size: 24px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-900">
+
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient">
+        <div class="absolute inset-0 opacity-20">
+            <svg class="w-full h-full" viewBox="0 0 1200 800" fill="none">
+                <path d="M0,400 Q300,200 600,400 T1200,400" stroke="white" stroke-width="2" opacity="0.3" />
+                <path d="M0,450 Q300,250 600,450 T1200,450" stroke="white" stroke-width="2" opacity="0.2" />
+                <path d="M0,350 Q300,150 600,350 T1200,350" stroke="white" stroke-width="2" opacity="0.4" />
+            </svg>
+        </div>
+
+        <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight animate-fade-in-up">
+                We Don't Sell Software.
+                <br>
+                <span
+                    style="background: linear-gradient(to right, #fde047, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    We Sell Outcomes.
+                </span>
+            </h1>
+
+            <p
+                class="text-xl sm:text-2xl text-white opacity-90 mb-12 leading-relaxed max-w-4xl mx-auto font-light animate-fade-in-up delay-200">
+                We identify high-value problems and build proprietary solutions that deliver real outcomes. No hourly
+                billing, no service retainers—just powerful tools crafted by problem solvers, owned by you.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#about"
+                    class="bg-white text-purple-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl btn-hover transition-all duration-300">
+                    Learn More
+                </a>
+                <a href="about.html"
+                    class="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-purple-600 transition-all duration-300">
+                    About Us
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+            <div
+                class="w-6 h-10 border-2 border-white border-opacity-50 rounded-full flex justify-center animate-float">
+                <div class="w-1 h-3 bg-white opacity-70 rounded-full mt-2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 opacity-30"></div>
+
+        <!-- Abstract Background SVG -->
+        <div class="absolute inset-0 pointer-events-none opacity-40">
+            <svg class="w-full h-full" viewBox="0 0 1440 1000" fill="none" xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="none">
+                <path d="M-100 600 C 200 400, 400 800, 800 600 S 1200 200, 1600 400" stroke="url(#flow-gradient-1)"
+                    stroke-width="2" stroke-dasharray="10 10" opacity="0.3" />
+                <path d="M-100 800 C 300 600, 500 900, 900 700 S 1300 300, 1700 500" stroke="url(#flow-gradient-2)"
+                    stroke-width="2" opacity="0.2" />
+                <circle cx="100" cy="200" r="300" fill="url(#blob-gradient-1)" fill-opacity="0.05" />
+                <circle cx="1300" cy="800" r="400" fill="url(#blob-gradient-2)" fill-opacity="0.05" />
+                <defs>
+                    <linearGradient id="flow-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#22d3ee" />
+                        <stop offset="100%" stop-color="#a855f7" />
+                    </linearGradient>
+                    <linearGradient id="flow-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#3b82f6" />
+                        <stop offset="100%" stop-color="#ec4899" />
+                    </linearGradient>
+                    <radialGradient id="blob-gradient-1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+                        gradientTransform="translate(100 200) rotate(90) scale(300)">
+                        <stop stop-color="#06b6d4" />
+                        <stop offset="1" stop-color="#06b6d4" stop-opacity="0" />
+                    </radialGradient>
+                    <radialGradient id="blob-gradient-2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+                        gradientTransform="translate(1300 800) rotate(90) scale(400)">
+                        <stop stop-color="#8b5cf6" />
+                        <stop offset="1" stop-color="#8b5cf6" stop-opacity="0" />
+                    </radialGradient>
+                </defs>
+            </svg>
+        </div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-8">
+                    <span class="gradient-text">Problem Solvers, Not Service Providers.</span>
+                </h2>
+
+                <div class="max-w-4xl mx-auto">
+                    <p class="text-xl sm:text-2xl text-gray-700 leading-relaxed font-light mb-6">
+                        We don't bill for time; we solve for impact. We create proprietary products that eliminate
+                        friction and deliver measurable value across entire industries.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Objective, Vision, Goal Cards -->
+            <div class="grid md:grid-cols-3 gap-8 mb-20">
+                <!-- Objective -->
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div class="w-16 h-16 gradient-cyan-blue rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-compass text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">Our Objective</h3>
+                    <p class="text-gray-700 leading-relaxed text-center">
+                        Identify real-world problems that cause friction in daily operations and build scalable
+                        solutions that create genuine value for businesses and individuals.
+                    </p>
+                </div>
+
+                <!-- Vision -->
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div
+                        class="w-16 h-16 gradient-purple-pink rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-eye text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">Our Vision</h3>
+                    <p class="text-gray-700 leading-relaxed text-center">
+                        A future where automation empowers everyone—not just corporations—by reducing complexity,
+                        eliminating inefficiencies, and enhancing how people work and live.
+                    </p>
+                </div>
+
+                <!-- Goal -->
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div class="w-16 h-16 gradient-orange rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-star text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">Our Goal</h3>
+                    <p class="text-gray-700 leading-relaxed text-center">
+                        Build a portfolio of high-impact products that serve entire industries—solutions that don't just
+                        automate tasks, but fundamentally improve outcomes.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Competitive Advantage Section Header -->
+        <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-8">
+                    <span class="gradient-text">Our Competitive Advantage</span>
+                </h2>
+
+                <div class="max-w-4xl mx-auto">
+                    <p class="text-xl sm:text-2xl text-gray-700 leading-relaxed font-light mb-6">
+                        It's not just what we build, but <strong>how we build</strong>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vertical Progress Bar / Timeline -->
+        <div class="relative z-10">
+            <div id="timeline-container" class="max-w-5xl mx-auto relative pb-20">
+                <!-- Vertical Line Background (Gray/Light) -->
+                <div id="timeline-line-bg"
+                    class="absolute left-8 md:left-1/2 w-1 bg-gray-100 transform -translate-x-1/2 rounded-full z-0">
+                </div>
+
+                <!-- Vertical Line Progress (Colored) -->
+                <div id="timeline-progress"
+                    class="absolute left-8 md:left-1/2 w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 transform -translate-x-1/2 rounded-full z-0 h-0">
+                </div>
+
+                <!-- Step 1 -->
+                <div class="timeline-step relative z-10 flex flex-col md:flex-row items-center mb-24 group">
+                    <div class="md:w-1/2 md:pr-12 pl-20 md:pl-0 w-full">
+                        <div
+                            class="step-card bg-white p-6 rounded-2xl shadow-lg border border-gray-100 transform transition-all duration-500 md:text-right relative overflow-hidden opacity-50 translate-y-4">
+                            <div
+                                class="absolute top-0 right-0 w-20 h-20 bg-blue-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110">
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2 relative z-10">Identify Bottlenecks</h3>
+                            <p class="text-gray-600 relative z-10">Pinpointing the exact friction points slowing you
+                                down.</p>
+                        </div>
+                    </div>
+                    <div
+                        class="step-icon absolute left-8 md:left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-4 border-gray-200 rounded-full flex items-center justify-center shadow-lg z-20 transition-all duration-500">
+                        <i class="fas fa-search text-gray-400 text-lg transition-colors duration-500"></i>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="timeline-step relative z-10 flex flex-col md:flex-row items-center mb-24 group">
+                    <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
+                    <div
+                        class="step-icon absolute left-8 md:left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-4 border-gray-200 rounded-full flex items-center justify-center shadow-lg z-20 transition-all duration-500">
+                        <i class="fas fa-drafting-compass text-gray-400 text-lg transition-colors duration-500"></i>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 pl-20 w-full">
+                        <div
+                            class="step-card bg-white p-6 rounded-2xl shadow-lg border border-gray-100 transform transition-all duration-500 relative overflow-hidden opacity-50 translate-y-4">
+                            <div
+                                class="absolute top-0 left-0 w-20 h-20 bg-blue-50 rounded-br-full -ml-4 -mt-4 transition-transform group-hover:scale-110">
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2 relative z-10">Architect Solutions</h3>
+                            <p class="text-gray-600 relative z-10">Designing a strategic roadmap for long-term
+                                scalability.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="timeline-step relative z-10 flex flex-col md:flex-row items-center mb-24 group">
+                    <div class="md:w-1/2 md:pr-12 pl-20 md:pl-0 w-full">
+                        <div
+                            class="step-card bg-white p-6 rounded-2xl shadow-lg border border-gray-100 transform transition-all duration-500 md:text-right relative overflow-hidden opacity-50 translate-y-4">
+                            <div
+                                class="absolute top-0 right-0 w-20 h-20 bg-purple-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110">
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2 relative z-10">Develop Proprietary IP</h3>
+                            <p class="text-gray-600 relative z-10">Building custom assets that you own and control.</p>
+                        </div>
+                    </div>
+                    <div
+                        class="step-icon absolute left-8 md:left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-4 border-gray-200 rounded-full flex items-center justify-center shadow-lg z-20 transition-all duration-500">
+                        <i class="fas fa-code text-gray-400 text-lg transition-colors duration-500"></i>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="timeline-step relative z-10 flex flex-col md:flex-row items-center group">
+                    <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
+                    <div
+                        class="step-icon absolute left-8 md:left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-4 border-gray-200 rounded-full flex items-center justify-center shadow-lg z-20 transition-all duration-500">
+                        <i class="fas fa-rocket text-gray-400 text-lg transition-colors duration-500"></i>
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 pl-20 w-full">
+                        <div
+                            class="step-card bg-white p-6 rounded-2xl shadow-lg border border-gray-100 transform transition-all duration-500 relative overflow-hidden opacity-50 translate-y-4">
+                            <div
+                                class="absolute top-0 left-0 w-20 h-20 bg-pink-50 rounded-br-full -ml-4 -mt-4 transition-transform group-hover:scale-110">
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2 relative z-10">High-Value Product</h3>
+                            <p class="text-gray-600 relative z-10">Delivering immediate, measurable value from day one.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- High-Value Solutions Teaser (Formerly Products) -->
+    <!--
+    <section class="py-24 bg-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 opacity-50"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+                <span class="gradient-text">High-Value Solutions</span>
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+                Ready-made, high-impact products that drive value from day one.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 card-hover flex flex-col items-center">
+                    <div
+                        class="w-20 h-20 gradient-cyan-blue rounded-2xl flex items-center justify-center mb-6 shadow-lg transform rotate-3 hover:rotate-6 transition-transform duration-300">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Workflow Automation</h3>
+                    <p class="text-gray-600">Eliminate manual tasks with intelligent, self-healing workflows.</p>
+                </div>
+                
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 card-hover flex flex-col items-center">
+                    <div
+                        class="w-20 h-20 gradient-blue-purple rounded-2xl flex items-center justify-center mb-6 shadow-lg transform -rotate-3 hover:-rotate-6 transition-transform duration-300">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">AI Agents</h3>
+                    <p class="text-gray-600">Deploy autonomous agents that handle customer support and sales.</p>
+                </div>
+                
+                <div
+                    class="bg-white p-8 rounded-3xl shadow-lg border border-gray-100 card-hover flex flex-col items-center">
+                    <div
+                        class="w-20 h-20 gradient-purple-pink rounded-2xl flex items-center justify-center mb-6 shadow-lg transform rotate-3 hover:rotate-6 transition-transform duration-300">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Custom Integrations</h3>
+                    <p class="text-gray-600">Connect your entire tech stack for seamless data flow.</p>
+                </div>
+            </div>
+
+            <a href="solutions.html"
+                class="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-10 py-5 rounded-full text-xl font-bold hover:shadow-xl btn-hover transition-all duration-300">
+                View All Products
+            </a>
+        </div>
+    </section>
+    -->
+
+
+
+
+
+
+
+    <!-- Chatbot -->
+    <link href="chatbot.css" rel="stylesheet">
+
+    <!-- JavaScript -->
+    <script>
+        // Services horizontal scroll
+        const servicesContainer = document.getElementById('services-container');
+        const scrollLeftBtn = document.getElementById('scroll-left');
+        const scrollRightBtn = document.getElementById('scroll-right');
+        const mobileScrollLeftBtn = document.getElementById('mobile-scroll-left');
+        const mobileScrollRightBtn = document.getElementById('mobile-scroll-right');
+
+        function scrollLeft() {
+            servicesContainer.scrollBy({ left: -300, behavior: 'smooth' });
+        }
+
+        function scrollRight() {
+            servicesContainer.scrollBy({ left: 300, behavior: 'smooth' });
+        }
+
+        if (scrollLeftBtn) scrollLeftBtn.addEventListener('click', scrollLeft);
+        if (scrollRightBtn) scrollRightBtn.addEventListener('click', scrollRight);
+        if (mobileScrollLeftBtn) mobileScrollLeftBtn.addEventListener('click', scrollLeft);
+        if (mobileScrollRightBtn) mobileScrollRightBtn.addEventListener('click', scrollRight);
+    </script>
+
+
+    <!-- Book Demo Modal -->
+    <div id="booking-modal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title"
+        role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Background overlay -->
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"
+                onclick="toggleModal()"></div>
+
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <!-- Modal panel -->
+            <div
+                class="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white px-6 py-6 sm:px-8 text-center relative border-b border-gray-100">
+                    <button type="button"
+                        class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 focus:outline-none transition-colors"
+                        onclick="toggleModal()">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                    <h3 class="text-2xl font-bold gradient-text mb-2" id="modal-title">Contact Us</h3>
+                    <p class="text-gray-600 text-sm">We're always looking for challenging problems to solve. If you have
+                        one, let's talk.</p>
+                </div>
+
+                <div class="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <form id="booking-form" class="space-y-4">
+                        <!-- Name Fields -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="first-name" class="block text-sm font-medium text-gray-700 mb-1">First Name
+                                    *</label>
+                                <input type="text" id="first-name" name="first-name"
+                                    class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+                                    placeholder="John">
+                            </div>
+                            <div>
+                                <label for="last-name" class="block text-sm font-medium text-gray-700 mb-1">Last Name
+                                    *</label>
+                                <input type="text" id="last-name" name="last-name"
+                                    class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+                                    placeholder="Doe">
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number
+                                *</label>
+                            <input type="tel" id="phone" name="phone"
+                                class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all">
+                        </div>
+
+                        <!-- Email -->
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address
+                                *</label>
+                            <input type="email" id="email" name="email"
+                                class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+                                placeholder="john@company.com">
+                        </div>
+
+                        <!-- Company Name -->
+                        <div>
+                            <label for="company-name" class="block text-sm font-medium text-gray-700 mb-1">Company
+                                Name (Optional)</label>
+                            <input type="text" id="company-name" name="company-name"
+                                class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+                                placeholder="Acme Inc.">
+                        </div>
+
+
+
+                        <!-- Message -->
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Explain Your
+                                Problem
+                                *</label>
+                            <textarea id="message" name="message" rows="3"
+                                class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+                                placeholder="Tell us about your needs..."></textarea>
+                        </div>
+
+                        <!-- Legal Checkbox -->
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input id="legal-consent" name="legal-consent" type="checkbox"
+                                    class="focus:ring-purple-500 h-4 w-4 text-purple-600 border-gray-300 rounded">
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="legal-consent" class="font-medium text-gray-700">I have read the <a
+                                        href="privacy-policy.html"
+                                        class="text-purple-600 hover:text-purple-500 underline">Privacy
+                                        Policy</a> and <a href="terms-of-service.html"
+                                        class="text-purple-600 hover:text-purple-500 underline">Terms of Service</a>
+                                    *</label>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="submit-btn"
+                            class="w-full text-white font-bold py-3 rounded-lg hover:shadow-lg transform transition-all duration-200 hover:scale-[1.02]"
+                            style="background: linear-gradient(to right, #06b6d4, #2563eb);">
+                            Send Request
+                        </button>
+
+                        <!-- Form Message -->
+                        <p id="form-message" class="text-center text-sm font-medium hidden mt-2"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
+    <style>
+        .iti {
+            width: 100%;
+        }
+    </style>
+
+    <script src="header.js"></script>
+    <script src="footer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+    <script src="contact-form.js"></script>
+    <script>
+        function toggleModal() {
+            const modal = document.getElementById('booking-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = 64; // Height of fixed header
+                    const targetPosition = target.offsetTop - headerHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections for animations
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            observer.observe(section);
+        });
+
+        // Initialize hero section as visible
+        const heroSection = document.getElementById('hero');
+        if (heroSection) {
+            heroSection.style.opacity = '1';
+            heroSection.style.transform = 'translateY(0)';
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const timelineContainer = document.getElementById('timeline-container');
+            const timelineProgress = document.getElementById('timeline-progress');
+            const steps = document.querySelectorAll('.timeline-step');
+
+            function updateTimeline() {
+                if (!timelineContainer) return;
+                const containerRect = timelineContainer.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                const triggerPoint = windowHeight * 0.6; // Trigger when 60% down the viewport
+
+                // Calculate progress
+                let progress = 0;
+                if (containerRect.top < triggerPoint) {
+                    const totalHeight = containerRect.height;
+                    const scrolled = triggerPoint - containerRect.top;
+                    progress = Math.min(Math.max((scrolled / totalHeight) * 100, 0), 100);
+                }
+
+                if (timelineProgress) timelineProgress.style.height = `${progress}%`;
+
+                // Update steps
+                steps.forEach((step, index) => {
+                    const stepRect = step.getBoundingClientRect();
+                    const icon = step.querySelector('.step-icon');
+                    const card = step.querySelector('.step-card');
+                    const iconI = icon.querySelector('i');
+
+                    // Colors for each step
+                    const colors = [
+                        { border: 'border-blue-500', text: 'text-blue-600' },
+                        { border: 'border-blue-500', text: 'text-blue-500' },
+                        { border: 'border-purple-500', text: 'text-purple-600' },
+                        { border: 'border-pink-500', text: 'text-pink-500' }
+                    ];
+
+                    if (stepRect.top < triggerPoint) {
+                        // Active State
+                        card.classList.remove('opacity-50', 'translate-y-4');
+                        card.classList.add('opacity-100', 'translate-y-0');
+
+                        icon.classList.remove('border-gray-200');
+                        icon.classList.add(colors[index].border, 'scale-110');
+
+                        iconI.classList.remove('text-gray-400');
+                        iconI.classList.add(colors[index].text);
+                    } else {
+                        // Inactive State
+                        card.classList.add('opacity-50', 'translate-y-4');
+                        card.classList.remove('opacity-100', 'translate-y-0');
+
+                        icon.classList.add('border-gray-200');
+                        icon.classList.remove(colors[index].border, 'scale-110');
+
+                        iconI.classList.add('text-gray-400');
+                        iconI.classList.remove(colors[index].text);
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateTimeline);
+            updateTimeline(); // Initial check
+        });
+    </script>
+</body>
+
+</html>

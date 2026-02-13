@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChipMatch AI - Nexaflo Automations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-hover {
+            transition: all 0.3s ease;
+        }
+
+        .btn-hover:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Gradients */
+        .gradient-purple {
+            background: linear-gradient(to right, #a855f7, #7c3aed);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- Header will be injected here -->
+    <script src="../header.js"></script>
+
+    <!-- Product 2: ChipMatch AI -->
+    <section id="chipmatch" class="py-24 bg-gray-50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <div class="inline-block p-3 rounded-2xl bg-indigo-100 mb-4">
+                    <i class="fas fa-microchip text-3xl text-indigo-600"></i>
+                </div>
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">ChipMatch AI</h1>
+                <p class="text-xl text-gray-700">The "Drop-in Replacement" Search Engine for R&D & Sourcing</p>
+            </div>
+
+            <!-- The Crisis & Solution -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+                <div class="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4"><i class="fas fa-radiation-alt mr-2"></i>The Crisis
+                    </h3>
+                    <p class="text-gray-800 leading-relaxed mb-4">
+                        A critical chip goes "End of Life" or has a 50-week lead time.
+                    </p>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-2"></i> <span>Engineers
+                                must
+                                redesign the PCB (Costing ₹5 Lakhs+).</span></li>
+                        <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-2"></i> <span>Or spend
+                                days
+                                reading 100-page datasheets to find a match.</span></li>
+                        <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-2"></i>
+                            <span><strong>Risk:</strong> Production halts indefinitely.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+                    <h3 class="text-2xl font-bold text-indigo-600 mb-4"><i class="fas fa-search-plus mr-2"></i>The
+                        Solution</h3>
+                    <p class="text-gray-800 leading-relaxed mb-4">
+                        Instantly find a "Drop-in Replacement" that fits your existing PCB.
+                    </p>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start"><i class="fas fa-check text-indigo-500 mt-1 mr-2"></i> <span>AI
+                                extracts
+                                Pinout, Voltage, & Package from datasheets.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Searches
+                                millions of parts for a 100% match.</span>
+                        </li>
+                        <li class="flex items-start"><i class="fas fa-check text-indigo-500 mt-1 mr-2"></i>
+                            <span>Visually
+                                overlays Pinouts to prove compatibility.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Workflow Visual -->
+            <div class="mb-20">
+                <h3 class="text-2xl font-bold text-gray-900 text-center mb-10">How It Works</h3>
+                <div class="relative">
+                    <!-- Connecting Line -->
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gray-100 -translate-y-1/2 z-0">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                        <!-- Step 1 -->
+                        <div
+                            class="bg-white p-6 rounded-2xl shadow-lg border-2 border-indigo-100 hover:border-indigo-300 transition-colors text-center group">
+                            <div
+                                class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl shadow-md group-hover:scale-110 transition-transform">
+                                1</div>
+                            <h4 class="font-bold text-gray-900 mb-2">Enter Old Part #</h4>
+                            <p class="text-sm text-gray-700 font-medium">Input the obsolete or out-of-stock part number.
+                            </p>
+                        </div>
+                        <!-- Step 2 -->
+                        <div
+                            class="bg-white p-6 rounded-2xl shadow-lg border-2 border-indigo-100 hover:border-indigo-300 transition-colors text-center group">
+                            <div
+                                class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl shadow-md group-hover:scale-110 transition-transform">
+                                2</div>
+                            <h4 class="font-bold text-gray-900 mb-2">AI Analysis</h4>
+                            <p class="text-sm text-gray-700 font-medium">System reads datasheets & compares pinouts.</p>
+                        </div>
+                        <!-- Step 3 -->
+                        <div
+                            class="bg-white p-6 rounded-2xl shadow-lg border-2 border-indigo-100 hover:border-indigo-300 transition-colors text-center group">
+                            <div
+                                class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl shadow-md group-hover:scale-110 transition-transform">
+                                3</div>
+                            <h4 class="font-bold text-gray-900 mb-2">Match Found</h4>
+                            <p class="text-sm text-gray-700 font-medium">Get a list of 100% compatible alternatives.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategic Win -->
+            <div
+                class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl p-10 text-white text-center shadow-xl">
+                <h3 class="text-3xl font-bold mb-4 text-white">Save Your Production Line</h3>
+                <p class="text-xl text-white max-w-3xl mx-auto mb-8 font-medium">
+                    "Don't redesign your board. Find a chip that fits."
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <div class="bg-white/10 backdrop-blur-md rounded-xl p-6">
+                        <div class="text-4xl font-bold mb-2 text-white">Days</div>
+                        <div class="text-sm text-white opacity-90">Saved in Research</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md rounded-xl p-6">
+                        <div class="text-4xl font-bold mb-2 text-white">₹5L+</div>
+                        <div class="text-sm text-white opacity-90">Saved in Redesign Costs</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../footer.js"></script>
+</body>
+
+</html>

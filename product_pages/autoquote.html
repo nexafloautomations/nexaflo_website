@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoQuote BOM Scrubber - Nexaflo Automations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-hover {
+            transition: all 0.3s ease;
+        }
+
+        .btn-hover:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Gradients */
+        .gradient-orange {
+            background: linear-gradient(to right, #fb923c, #ea580c);
+        }
+
+        /* Missing Tailwind Orange Utilities */
+        .bg-orange-50 {
+            background-color: #fff7ed;
+        }
+
+        .bg-orange-100 {
+            background-color: #ffedd5;
+        }
+
+        .text-orange-600 {
+            color: #ea580c;
+        }
+
+        .border-orange-100 {
+            border-color: #ffedd5;
+        }
+
+        .border-orange-300 {
+            border-color: #fdba74;
+        }
+
+        .bg-gradient-orange {
+            background: linear-gradient(135deg, #fb923c, #ef4444);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- Header will be injected here -->
+    <script src="../header.js"></script>
+
+    <!-- Product 1: AutoQuote BOM Scrubber -->
+    <section id="autoquote" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <div class="inline-block p-3 rounded-2xl bg-orange-100 mb-4">
+                    <i class="fas fa-robot text-3xl text-orange-600"></i>
+                </div>
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">AutoQuote BOM Scrubber</h1>
+                <p class="text-xl text-gray-700">The "Supply Chain Agent" for Distributors & EMS</p>
+            </div>
+
+            <!-- Pain Points -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+                <div class="bg-red-50 rounded-3xl p-8 border border-red-100">
+                    <h3 class="text-2xl font-bold text-red-600 mb-4"><i class="fas fa-exclamation-circle mr-2"></i>The
+                        Distributor Pain</h3>
+                    <p class="text-gray-800 leading-relaxed mb-4">
+                        You get 50 emails/day: "Quote for 500x STM32F103 and 1000x 10uF Caps."
+                    </p>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-2"></i>
+                            <span>Salespeople
+                                manually check Excel stock lists.</span>
+                        </li>
+                        <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-2"></i> <span>Manually
+                                calculate margins and type replies.</span></li>
+                        <li class="flex items-start"><i class="fas fa-times text-red-400 mt-1 mr-2"></i>
+                            <span><strong>Result:</strong> 20 minutes wasted per quote.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-blue-50 rounded-3xl p-8 border border-blue-100">
+                    <h3 class="text-2xl font-bold text-blue-600 mb-4"><i class="fas fa-magic mr-2"></i>The Automation
+                    </h3>
+                    <p class="text-gray-800 leading-relaxed mb-4">
+                        Distributor forwards the RFQ email to <strong>bot@yourdomain.com</strong>.
+                    </p>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start"><i class="fas fa-check text-blue-500 mt-1 mr-2"></i> <span>AI reads
+                                the
+                                email & extracts Part Numbers & Quantities.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-blue-500 mt-1 mr-2"></i> <span>Checks
+                                <strong>DigiKey, Mouser, IndiaMart, Google</strong> & internal stock for best
+                                prices.</span>
+                        </li>
+                        <li class="flex items-start"><i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
+                            <span>Generates a
+                                PDF Report with lowest prices & supplier details, then drafts a reply.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Workflow Visual -->
+            <div class="mb-20">
+                <h3 class="text-2xl font-bold text-gray-900 text-center mb-10">How It Works</h3>
+                <div class="relative">
+                    <!-- Connecting Line -->
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gray-100 -translate-y-1/2 z-0">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+                        <!-- Step 1 -->
+                        <div
+                            class="bg-white p-6 rounded-2xl shadow-lg border-2 border-orange-100 hover:border-orange-300 transition-colors text-center group">
+                            <div
+                                class="w-14 h-14 bg-gradient-orange rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl shadow-md group-hover:scale-110 transition-transform">
+                                1</div>
+                            <h4 class="font-bold text-gray-900 mb-2">Email Received</h4>
+                            <p class="text-sm text-gray-700 font-medium">Forward RFQ to Bot</p>
+                        </div>
+                        <!-- Step 2 -->
+                        <div
+                            class="bg-white p-6 rounded-2xl shadow-lg border-2 border-orange-100 hover:border-orange-300 transition-colors text-center group">
+                            <div
+                                class="w-14 h-14 bg-gradient-orange rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl shadow-md group-hover:scale-110 transition-transform">
+                                2</div>
+                            <h4 class="font-bold text-gray-900 mb-2">AI Extraction</h4>
+                            <p class="text-sm text-gray-700 font-medium">Reads PNs & Qty from text</p>
+                        </div>
+                        <!-- Step 3 -->
+                        <div
+                            class="bg-white p-6 rounded-2xl shadow-lg border-2 border-orange-100 hover:border-orange-300 transition-colors text-center group">
+                            <div
+                                class="w-14 h-14 bg-gradient-orange rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl shadow-md group-hover:scale-110 transition-transform">
+                                3</div>
+                            <h4 class="font-bold text-gray-900 mb-2">Global Price Check</h4>
+                            <p class="text-sm text-gray-700 font-medium">Checks DigiKey, Mouser, etc.</p>
+                        </div>
+                        <!-- Step 4 -->
+                        <div
+                            class="bg-white p-6 rounded-2xl shadow-lg border-2 border-orange-100 hover:border-orange-300 transition-colors text-center group">
+                            <div
+                                class="w-14 h-14 bg-gradient-orange rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl shadow-md group-hover:scale-110 transition-transform">
+                                4</div>
+                            <h4 class="font-bold text-gray-900 mb-2">Report Sent</h4>
+                            <p class="text-sm text-gray-700 font-medium">PDF with Best Prices Ready</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategic Win & Network Effect -->
+            <div class="bg-gradient-orange rounded-3xl p-10 text-white shadow-xl">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-4 text-white">Why You Need This</h3>
+                        <p class="text-xl text-white mb-6 font-medium">
+                            "Stop wasting 20 minutes per quote. Our bot replies instantly, 24/7."
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-2xl text-white">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-white">Zero Manual Entry</h4>
+                                    <p class="text-white text-sm opacity-90">Automate the boring stuff.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-2xl text-white">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg text-white">100% Response Rate</h4>
+                                    <p class="text-white text-sm opacity-90">Never miss a customer inquiry.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+                        <h3 class="text-2xl font-bold mb-4 text-white"><i class="fas fa-network-wired mr-2"></i>The
+                            Network Effect
+                        </h3>
+                        <p class="text-white leading-relaxed mb-4">
+                            <strong>Turn your inventory into a lead magnet.</strong>
+                        </p>
+                        <p class="text-white leading-relaxed text-sm">
+                            By using AutoQuote, you join a network of distributors. When you share your stock
+                            availability, our system can automatically match your parts with buyers across the Nexaflo
+                            network, generating passive leads and sales opportunities you would have otherwise missed.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../footer.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+(function () {
+    // Determine if we are in a subdirectory
+    const isInSubdirectory = window.location.pathname.includes('/product_pages/') || window.location.pathname.includes('/legal_pages/');
+    const rootPath = isInSubdirectory ? '../' : '';
+
+    // Helper to get correct link path
+    const getLink = (hash) => {
+        const isHomePage = (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/')) && !isInSubdirectory;
+        return isHomePage ? hash : `${rootPath}index.html${hash}`;
+    };
+
+    const footerHTML = `
+    <footer class="footer-gradient text-white py-16" style="background: linear-gradient(135deg, #1e1b4b 0%, #5b21b6 50%, #1e1b4b 100%);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Top Section: Brand & Social -->
+            <div class="text-center mb-12">
+                <div class="text-3xl font-bold mb-6" style="background: linear-gradient(to right, #22d3ee, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    Nexaflo Automations
+                </div>
+                <p class="text-white opacity-80 mb-8 max-w-2xl mx-auto">
+                    Empowering businesses with intelligent automation solutions that deliver true outcomes.
+                </p>
+                
+                <!-- Clean Social Media Icons -->
+                <div class="flex gap-4 justify-center mb-8">
+                    <a href="https://www.linkedin.com/company/nexafloautomations/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" 
+                       class="group relative w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center hover:bg-white/20 transition-all duration-300 border border-white/20 hover:border-white/40 hover:-translate-y-1">
+                        <i class="fab fa-linkedin text-xl text-white group-hover:text-cyan-300 transition-colors"></i>
+                    </a>
+                    <a href="https://x.com/nexaflo" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" 
+                       class="group relative w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center hover:bg-white/20 transition-all duration-300 border border-white/20 hover:border-white/40 hover:-translate-y-1">
+                        <i class="fab fa-x-twitter text-xl text-white group-hover:text-cyan-300 transition-colors"></i>
+                    </a>
+                    <a href="https://www.instagram.com/nexaflo_automations" target="_blank" rel="noopener noreferrer" aria-label="Instagram" 
+                       class="group relative w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center hover:bg-white/20 transition-all duration-300 border border-white/20 hover:border-white/40 hover:-translate-y-1">
+                        <i class="fab fa-instagram text-xl text-white group-hover:text-cyan-300 transition-colors"></i>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61580061917882" target="_blank" rel="noopener noreferrer" aria-label="Facebook" 
+                       class="group relative w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center hover:bg-white/20 transition-all duration-300 border border-white/20 hover:border-white/40 hover:-translate-y-1">
+                        <i class="fab fa-facebook text-xl text-white group-hover:text-cyan-300 transition-colors"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12 text-left md:text-center">
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-sm font-bold mb-4 text-white uppercase tracking-wider opacity-90">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="${getLink('#hero')}" class="text-white opacity-70 hover:opacity-100 hover:text-cyan-300 transition-all text-sm">Home</a></li>
+                        <li><a href="${rootPath}about.html" class="text-white opacity-70 hover:opacity-100 hover:text-cyan-300 transition-all text-sm">About Us</a></li>
+                        <li><a href="${rootPath}contact.html" class="text-white opacity-70 hover:opacity-100 hover:text-cyan-300 transition-all text-sm">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Solutions -->
+                <div>
+                    <h3 class="text-sm font-bold mb-4 text-white uppercase tracking-wider opacity-90">Solutions</h3>
+                    <ul class="space-y-2">
+                        <li><a href="${rootPath}solutions.html" class="text-white opacity-70 hover:opacity-100 hover:text-cyan-300 transition-all text-sm">View Solutions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h3 class="text-sm font-bold mb-4 text-white uppercase tracking-wider opacity-90">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="${rootPath}legal_pages/privacy-policy.html" class="text-white opacity-70 hover:opacity-100 hover:text-cyan-300 transition-all text-sm">Privacy Policy</a></li>
+                        <li><a href="${rootPath}legal_pages/terms-of-service.html" class="text-white opacity-70 hover:opacity-100 hover:text-cyan-300 transition-all text-sm">Terms of Service</a></li>
+                        <li><a href="${rootPath}legal_pages/data-deletion.html" class="text-white opacity-70 hover:opacity-100 hover:text-cyan-300 transition-all text-sm">Data Deletion</a></li>
+                        <li><a href="${rootPath}legal_pages/refund-policy.html" class="text-white opacity-70 hover:opacity-100 hover:text-cyan-300 transition-all text-sm">Refund Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Get in Touch -->
+                <div>
+                    <h3 class="text-sm font-bold mb-4 text-white uppercase tracking-wider opacity-90">Get in Touch</h3>
+                    <a href="${rootPath}contact.html" 
+                       class="inline-block bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom Section -->
+            <div class="border-t border-white/20 pt-8 text-center">
+                <p class="text-white opacity-60 text-sm">
+                    © 2025 Nexaflo Automations. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+    `;
+
+    // Inject before chatbot or at the end of body
+    const chatbotContainer = document.getElementById('chatbot-container');
+    if (chatbotContainer) {
+        chatbotContainer.insertAdjacentHTML('beforebegin', footerHTML);
+    } else {
+        document.body.insertAdjacentHTML('beforeend', footerHTML);
+    }
+})();

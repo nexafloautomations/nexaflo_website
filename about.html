@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Nexaflo Automations</title>
+    <meta name="description"
+        content="Learn about Nexaflo Automations - Building AI solutions that solve real-world problems and create genuine value for businesses and individuals.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <style>
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(to right, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Button Hover Effects */
+        .btn-hover {
+            transition: all 0.3s ease;
+        }
+
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .delay-400 {
+            animation-delay: 0.4s;
+            animation-fill-mode: both;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- Header will be injected here -->
+    <script src="header.js"></script>
+
+    <!-- Hero Section -->
+    <section
+        class="min-h-[50vh] flex items-center justify-center bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-500 relative overflow-hidden pt-24">
+        <div class="absolute inset-0 bg-black opacity-10"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-20">
+            <h1 class="text-5xl sm:text-6xl font-bold text-white mb-6 animate-fade-in-up">
+                About <span class="text-cyan-300">Nexaflo</span>
+            </h1>
+            <p class="text-xl sm:text-2xl text-white opacity-90 max-w-3xl mx-auto animate-fade-in-up delay-200">
+                Building AI solutions that solve real problems and create genuine value
+            </p>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">
+                        <span class="gradient-text">Our Story</span>
+                    </h2>
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Founded in <strong>September 2025</strong> and headquartered in <strong>Mumbai, India</strong>,
+                        Nexaflo Automations began with a simple realization: the world doesn't need more agencies—it
+                        needs more solutions.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        We initially started as an AI consultancy, building custom solutions for individual businesses.
+                        But we quickly recognized the limitations of that model—unpredictable revenue, low barriers to
+                        entry, and the rise of no-code platforms commoditizing the space.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        That's when we pivoted. Instead of building one-off solutions for clients, we shifted our focus
+                        to <strong>identifying high-value problems</strong> and creating <strong>proprietary
+                            products</strong> that serve entire industries. We build solutions that reduce friction,
+                        automate complexity, and deliver measurable value—not just for businesses, but for the people
+                        they serve.
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-br from-purple-50 to-cyan-50 p-8 rounded-3xl shadow-lg">
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-calendar-alt text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Founded</h3>
+                                <p class="text-gray-700">September 2025</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Headquarters</h3>
+                                <p class="text-gray-700">Mumbai, Maharashtra, India</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-bullseye text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Mission</h3>
+                                <p class="text-gray-700">Build valuable solutions that solve real problems</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    Meet the <span class="gradient-text">Founder</span>
+                </h2>
+                <p class="text-xl text-gray-600">Driven by empathy, curiosity, and a passion for problem-solving</p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+                <div class="grid md:grid-cols-5 gap-8">
+                    <!-- Founder Image/Icon Placeholder -->
+                    <div
+                        class="md:col-span-2 bg-gradient-to-br from-purple-600 to-cyan-500 flex items-center justify-center p-12">
+                        <div class="text-center">
+                            <div
+                                class="w-32 h-32 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-white/40">
+                                <i class="fas fa-user text-white text-6xl"></i>
+                            </div>
+                            <h3 class="text-3xl font-bold text-white mb-2">Devansh Seth</h3>
+                            <p class="text-white/90 text-lg">Founder & CEO</p>
+                            <p class="text-white/80 text-sm mt-2">Age 21</p>
+                        </div>
+                    </div>
+
+                    <!-- Founder Story -->
+                    <div class="md:col-span-3 p-8 md:p-12">
+                        <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                            Since childhood, Devansh has always viewed the world differently. Where others saw routine,
+                            he saw opportunities to help. His natural empathy led him to <strong>listen to people's
+                                problems</strong> and seek ways to create value in their lives.
+                        </p>
+
+                        <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                            He initially envisioned starting a consultancy to help people and businesses find purpose
+                            and solve operational challenges. But he lacked the experience and roadmap to make it
+                            happen.
+                        </p>
+
+                        <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                            After exploring multiple paths, Devansh discovered his calling: <strong>using AI to build
+                                real-world solutions</strong> that fundamentally change how people work and live. His
+                            passion for problem-solving and puzzles now drives Nexaflo's mission—creating automation
+                            that doesn't just serve businesses, but empowers the people within them.
+                        </p>
+
+                        <div class="border-l-4 border-cyan-500 pl-6 bg-cyan-50 p-4 rounded-r-lg">
+                            <p class="text-gray-800 italic">
+                                "Automation should benefit everyone—not just corporations. Our goal is to reduce
+                                friction, solve real problems, and create value that touches people's daily lives."
+                            </p>
+                            <p class="text-gray-600 mt-2 text-sm">— Devansh Seth</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    Our <span class="gradient-text">Vision</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    We're building a future where automation creates value for everyone
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Vision Card 1 -->
+                <div
+                    class="bg-gradient-to-br from-cyan-50 to-blue-50 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-lightbulb text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Problem-First Approach</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        We don't build technology for technology's sake. We identify real pain points and craft
+                        solutions that deliver measurable impact.
+                    </p>
+                </div>
+
+                <!-- Vision Card 2 -->
+                <div
+                    class="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">People-Centered Design</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Our solutions are built with empathy—designed to empower individuals, reduce friction, and make
+                        work more meaningful.
+                    </p>
+                </div>
+
+                <!-- Vision Card 3 -->
+                <div
+                    class="bg-gradient-to-br from-orange-50 to-yellow-50 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-r from-orange-500 to-yellow-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-rocket text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Scalable Innovation</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        We build proprietary products that serve entire industries—creating value at scale, not just for
+                        one client at a time.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-br from-gray-900 to-gray-800 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
+            <div class="absolute -top-24 -left-24 w-96 h-96 bg-cyan-500 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl sm:text-5xl font-bold text-white mb-6">
+                Let's Build Something Meaningful
+            </h2>
+            <p class="text-xl text-white/90 mb-10 leading-relaxed">
+                We're always looking for challenging problems to solve. If you have one, let's talk.
+            </p>
+            <a href="contact.html"
+                class="inline-block bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-10 py-4 rounded-full text-lg font-bold hover:shadow-xl btn-hover transition-all duration-300">
+                Get in Touch
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer will be injected here -->
+    <script src="footer.js"></script>
+
+</body>
+
+</html>
