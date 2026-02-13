@@ -20,8 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-
-
     if (form) {
         form.addEventListener('submit', function (e) {
             e.preventDefault();
@@ -81,14 +79,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 formData.email = email.value.trim();
             }
 
-
             // Company Name (Optional)
             const companyName = document.getElementById('company-name');
             if (companyName && companyName.value.trim()) {
                 formData.companyName = companyName.value.trim();
             }
 
-            // Message (Optional)
             // Message
             const message = document.getElementById('message');
             if (!message.value.trim()) {
@@ -97,16 +93,6 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 formData.message = message.value.trim();
             }
-
-            // Add Timestamp (dd/MM/yyyy HH:mm:ss)
-            const now = new Date();
-            const day = String(now.getDate()).padStart(2, '0');
-            const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
-            const year = now.getFullYear();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            formData.submissionDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 
             // Legal Consent
             const legalConsent = document.getElementById('legal-consent');
@@ -121,46 +107,43 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            // Disable button and show loading state
-            const originalBtnText = submitBtn.innerText;
+            // Show loading state
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
             submitBtn.disabled = true;
-            submitBtn.innerText = 'Sending...';
 
-            // Send to Webhook
-            fetch('https://nexafloautomations.app.n8n.cloud/webhook/nexaflo-incoming-form', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        form.reset();
+            // Prepare template parameters
+            const templateParams = {
+                first_name: document.getElementById('first-name').value.trim(),
+                last_name: document.getElementById('last-name').value.trim(),
+                phone: iti ? iti.getNumber() : document.getElementById('phone').value,
+                email: document.getElementById('email').value.trim(),
+                company_name: document.getElementById('company-name').value.trim(),
+                message: document.getElementById('message').value.trim()
+            };
+
+            // Send email using EmailJS
+            emailjs.send('service_ti2aum9', 'template_1ihzoqq', templateParams)
+                .then(function (response) {
+                    form.reset();
+                    // Show success message
+                    if (formMessage) {
                         formMessage.innerText = 'Thank you! We will be in touch shortly.';
                         formMessage.classList.remove('hidden', 'text-red-600');
                         formMessage.classList.add('text-green-600');
-                        // Close modal if it exists and is open
-                        const modal = document.getElementById('booking-modal');
-                        if (modal && !modal.classList.contains('hidden')) {
-                            setTimeout(() => {
-                                modal.classList.add('hidden');
-                                formMessage.classList.add('hidden');
-                            }, 3000);
-                        }
-                    } else {
-                        throw new Error('Network response was not ok');
                     }
                 })
-                .catch(error => {
-                    console.error('Error:', error);
-                    formMessage.innerText = 'Something went wrong. Please try again.';
-                    formMessage.classList.remove('hidden', 'text-green-600');
-                    formMessage.classList.add('text-red-600');
+                .catch(function (error) {
+                    console.error('FAILED...', error);
+                    if (formMessage) {
+                        formMessage.innerText = 'Something went wrong. Please try again.';
+                        formMessage.classList.remove('hidden', 'text-green-600');
+                        formMessage.classList.add('text-red-600');
+                    }
                 })
-                .finally(() => {
+                .finally(function () {
+                    submitBtn.innerHTML = originalBtnText;
                     submitBtn.disabled = false;
-                    submitBtn.innerText = originalBtnText;
                 });
         });
     }

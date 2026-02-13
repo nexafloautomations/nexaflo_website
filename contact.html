@@ -18,6 +18,14 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init({
+                publicKey: "J7gZRxby7Zf0M1_Mn",
+            });
+        })();
+    </script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -150,9 +158,9 @@
                                 <i class="fas fa-bolt text-blue-600 text-lg"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-lg text-gray-900">Fast Response</h4>
-                                <p class="text-gray-600 text-sm">We typically respond within 30 minutes during business
-                                    hours.</p>
+                                <h4 class="font-bold text-lg text-gray-900">Review Process</h4>
+                                <p class="text-gray-600 text-sm">We interpret your request and reply within 24-48 hours.
+                                </p>
                             </div>
                         </div>
 
@@ -180,21 +188,7 @@
                     </div>
                 </div>
 
-                <!-- Business Hours Card -->
-                <div class="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Business Hours</h3>
 
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-gray-600 font-medium">Support</span>
-                        <span class="text-green-600 font-bold bg-green-100 px-3 py-1 rounded-full text-sm">24/7
-                            Active</span>
-                    </div>
-
-                    <p class="text-gray-500 text-sm leading-relaxed">
-                        Our automated systems are always running, and our global support team is available around the
-                        clock to assist you with any urgent needs.
-                    </p>
-                </div>
             </div>
         </div>
     </main>
