@@ -79,11 +79,15 @@ const surveyData = [
         question: "How useful would each of these AI features be to you?",
         subtitle: "Rate each feature",
         rows: [
-            "AI scoring your profile against job requirements",
-            "Personalized CV improvement suggestions",
+            "AI scoring your profile against job requirements & Gap Analysis",
+            "Personalized CV & Cover Letter improvement suggestions",
             "Direct contact details of hiring managers/founders",
             "AI-generated interview prep with Q&A and flashcards",
-            "Job recommendations based on your skills"
+            "Job recommendations based on your skills",
+            "Resume building from scratch based on target role",
+            "LinkedIn profile strengthening suggestions",
+            "Career path mapping & alternative opportunities",
+            "Salary expectations & negotiation tips"
         ],
         columns: ["Very Useful", "Useful", "Neutral", "Not Useful"]
     },
@@ -141,8 +145,9 @@ let answers = {};
 const container = document.getElementById('question-container');
 const progressBar = document.getElementById('progress-bar');
 const progressText = document.getElementById('progress-text');
-const nextBtn = document.getElementById('next-btn');
-const prevBtn = document.getElementById('prev-btn');
+// No change needed in main.js as the copy logic is in HTML
+// Proceeding with HTML updates only.
+
 
 // Initialize
 function init() {
@@ -155,8 +160,7 @@ function init() {
     renderStep();
     updateNavigation();
 
-    if (nextBtn) nextBtn.addEventListener('click', handleNext);
-    if (prevBtn) prevBtn.addEventListener('click', handlePrev);
+
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && surveyData[currentStep].type !== 'checkbox' && !e.shiftKey) {
@@ -173,116 +177,166 @@ function init() {
 }
 
 // Render Current Step
+// Helper to render input fields based on type
+function renderInputType(step) {
+    if (step.type === 'radio' || step.type === 'checkbox' || step.type === 'radio-other') {
+        return `
+            <div class="space-y-3 max-w-xl">
+                ${step.options.map((opt, idx) => `
+                    <div class="option-card border border-gray-200 rounded-lg p-4 flex items-center ${isSelected(step.id, opt) ? 'selected' : ''}" onclick="selectOption('${step.id}', '${opt.replace(/'/g, "\\'")}', '${step.type}')" data-value="${opt}">
+                        <div class="option-key border-gray-300 bg-white text-xs font-bold uppercase flex-shrink-0">${String.fromCharCode(65 + idx)}</div>
+                        <span class="text-lg text-gray-700 font-medium ml-3">${opt}</span>
+                    </div>
+                `).join('')}
+                
+                ${step.type === 'radio-other' ? `
+                    <div class="option-card border border-gray-200 rounded-lg p-4 flex items-center ${answers[step.id] && !step.options.includes(answers[step.id]) ? 'selected' : ''}" onclick="selectOther('${step.id}')">
+                        <div class="option-key border-gray-300 bg-white text-xs font-bold uppercase flex-shrink-0">O</div>
+                        <span class="text-lg text-gray-700 font-medium ml-3 mr-4">Other:</span>
+                        <input type="text" id="other-input-${step.id}" 
+                            class="flex-1 bg-transparent border-b border-gray-300 focus:border-cyan-500 outline-none text-gray-700 pb-1" 
+                            placeholder="Type here..." 
+                            oninput="updateOther('${step.id}', this.value)"
+                            value="${answers[step.id] && !step.options.includes(answers[step.id]) ? answers[step.id] : ''}">
+                    </div>
+                ` : ''}
+            </div>
+        `;
+    }
+
+    if (step.type === 'contact') {
+        return `
+            <div class="space-y-6 max-w-xl">
+                ${step.fields.map(field => `
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">${field.label}</label>
+                        <input type="${field.inputType || 'text'}" 
+                            class="w-full bg-transparent border-b-2 border-gray-300 focus:border-cyan-500 outline-none text-xl sm:text-2xl py-2 transition-colors placeholder-gray-300" 
+                            placeholder="${field.placeholder}"
+                            value="${(answers[step.id] && answers[step.id][field.id]) || ''}"
+                            oninput="updateContact('${step.id}', '${field.id}', this.value)">
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    if (step.type === 'matrix') {
+        return `
+            <div class="space-y-6 max-w-2xl px-1">
+                ${step.rows.map((row, rIdx) => `
+                    <div class="pb-6 border-b border-gray-100 last:border-0 text-left">
+                        <p class="font-medium text-gray-900 mb-3 text-lg">${row}</p>
+                        <div class="flex flex-wrap gap-2">
+                            ${step.columns.map((col, cIdx) => `
+                                <button class="matrix-btn px-4 py-2 text-sm border rounded-full transition-colors ${getMatrixAnswer(step.id, row) === col ? 'bg-cyan-600 text-white border-cyan-600' : 'bg-white text-gray-600 border-gray-300 hover:border-cyan-400'}"
+                                    onclick="selectMatrix('${step.id}', '${row.replace(/'/g, "\\'")}', '${col.replace(/'/g, "\\'")}')"
+                                    data-row="${row}" data-col="${col}">
+                                    ${col}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+    return '';
+}
+
+// Render Current Step
 function renderStep() {
     container.classList.remove('fade-in');
     container.classList.add('fade-out');
 
-    const delay = container.innerHTML.trim() === '' ? 50 : 300;
-
     setTimeout(() => {
         const step = surveyData[currentStep];
-        if (!step) {
-            console.error("Step not found:", currentStep);
-            container.innerHTML = "<div class='text-red-500'>Error loading survey step. Please refresh.</div>";
-            container.classList.remove('fade-out');
-            container.classList.add('fade-in');
-            return;
-        }
+        if (!step) return;
 
-        let html = '';
-
+        // Intro / Outro - Centered Simple Layout
         if (step.type === 'intro' || step.type === 'outro') {
-            html = `
-                <div class="text-center">
-                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">${step.title}</h1>
-                    <p class="text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">${step.description}</p>
-                </div>
-            `;
-        }
-        else if (step.type === 'radio' || step.type === 'checkbox' || step.type === 'radio-other') {
-            html = `
-                <div class="mb-4 text-cyan-600 font-semibold text-sm uppercase tracking-wide">Question ${getQuestionNumber()}</div>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">${step.question}</h2>
-                ${step.subtitle ? `<p class="text-gray-500 text-lg mb-8 italic">${step.subtitle}</p>` : '<div class="mb-8"></div>'}
-                
-                <div class="space-y-3 max-w-xl">
-                    ${step.options.map((opt, idx) => `
-                        <div class="option-card border border-gray-200 rounded-lg p-4 flex items-center ${isSelected(step.id, opt) ? 'selected' : ''}" onclick="selectOption('${step.id}', '${opt.replace(/'/g, "\\'")}', '${step.type}')" data-value="${opt}">
-                            <div class="option-key border-gray-300 bg-white text-xs font-bold uppercase">${String.fromCharCode(65 + idx)}</div>
-                            <span class="text-lg text-gray-700 font-medium">${opt}</span>
-                        </div>
-                    `).join('')}
-                    
-                    ${step.type === 'radio-other' ? `
-                        <div class="option-card border border-gray-200 rounded-lg p-4 flex items-center ${answers[step.id] && !step.options.includes(answers[step.id]) ? 'selected' : ''}" onclick="selectOther('${step.id}')">
-                            <div class="option-key border-gray-300 bg-white text-xs font-bold uppercase">O</div>
-                            <span class="text-lg text-gray-700 font-medium mr-4">Other:</span>
-                            <input type="text" id="other-input-${step.id}" 
-                                class="flex-1 bg-transparent border-b border-gray-300 focus:border-cyan-500 outline-none text-gray-700 pb-1" 
-                                placeholder="Type here..." 
-                                oninput="updateOther('${step.id}', this.value)"
-                                value="${answers[step.id] && !step.options.includes(answers[step.id]) ? answers[step.id] : ''}">
-                        </div>
+            container.innerHTML = `
+                <div class="flex flex-col items-center justify-center min-h-[50vh] text-center p-6">
+                    <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight animate-fade-in-up">${step.title}</h1>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto animate-fade-in-up delay-100">${step.description}</p>
+                    ${step.type === 'intro' ? `
+                        <button onclick="handleNext()" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all animate-fade-in-up delay-200">
+                            ${step.buttonText} <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
                     ` : ''}
                 </div>
             `;
-        }
-        else if (step.type === 'contact') {
-            html = `
-                <div class="mb-4 text-cyan-600 font-semibold text-sm uppercase tracking-wide">Contact Info</div>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">${step.question}</h2>
-                ${step.subtitle ? `<p class="text-gray-500 text-lg mb-8 italic">${step.subtitle}</p>` : '<div class="mb-8"></div>'}
-                
-                <div class="space-y-6 max-w-xl">
-                    ${step.fields.map(field => `
-                        <div>
-                            <label class="block text-gray-700 font-semibold mb-2">${field.label}</label>
-                            <input type="${field.inputType || 'text'}" 
-                                class="w-full bg-transparent border-b-2 border-gray-300 focus:border-cyan-500 outline-none text-2xl py-2 transition-colors placeholder-gray-300" 
-                                placeholder="${field.placeholder}"
-                                value="${(answers[step.id] && answers[step.id][field.id]) || ''}"
-                                oninput="updateContact('${step.id}', '${field.id}', this.value)">
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-        }
-        else if (step.type === 'matrix') {
-            html = `
-                 <div class="mb-4 text-cyan-600 font-semibold text-sm uppercase tracking-wide">Question ${getQuestionNumber()}</div>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">${step.question}</h2>
-                <p class="text-gray-500 text-lg mb-8 italic">Rate each feature</p>
-                
-                <div class="space-y-6 max-w-2xl overflow-y-auto max-h-[60vh] pr-2 no-scrollbar">
-                    ${step.rows.map((row, rIdx) => `
-                        <div class="pb-6 border-b border-gray-100 last:border-0">
-                            <p class="font-medium text-gray-900 mb-3 text-lg">${row}</p>
-                            <div class="flex flex-wrap gap-2">
-                                ${step.columns.map((col, cIdx) => `
-                                    <button class="matrix-btn px-4 py-2 text-sm border rounded-full transition-colors ${getMatrixAnswer(step.id, row) === col ? 'bg-cyan-600 text-white border-cyan-600' : 'bg-white text-gray-600 border-gray-300 hover:border-cyan-400'}"
-                                        onclick="selectMatrix('${step.id}', '${row.replace(/'/g, "\\'")}', '${col.replace(/'/g, "\\'")}')"
-                                        data-row="${row}" data-col="${col}">
-                                        ${col}
-                                    </button>
-                                `).join('')}
+        } else {
+            // Questions - Fixed Header, Scrollable Body, Fixed Footer
+            // Fixed height container allows internal scrolling
+            const totalSteps = surveyData.length - 1; // approximate
+            // Calculate percentage based on surveyData index logic, reusing updateNavigation logic visual if needed or just simple math
+            const q1Index = surveyData.findIndex(s => s.id === 'q1');
+            const currentQ = currentStep - q1Index + 1;
+            const totalQ = surveyData.length - q1Index - 1;
+            let percent = 0;
+            if (currentStep >= q1Index) percent = Math.round(((currentStep - q1Index) / totalQ) * 100);
+            if (percent > 100) percent = 100;
+
+
+            container.innerHTML = `
+                <div class="flex flex-col h-[80vh] sm:h-[600px] bg-white rounded-2xl shadow-xl overflow-hidden relative">
+                    
+                    <!-- Fixed Header -->
+                    <div class="flex-shrink-0 bg-white z-20 border-b border-gray-100 px-6 pt-6 pb-4">
+                        ${currentStep >= q1Index ? `
+                        <div class="mb-4">
+                            <div class="flex justify-between text-xs font-semibold text-gray-400 mb-1 uppercase tracking-wider">
+                                <span>Question ${getQuestionNumber()}</span>
+                                <span>${percent}%</span>
+                            </div>
+                            <div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                                <div class="bg-gradient-to-r from-cyan-400 to-purple-500 h-1.5 rounded-full transition-all duration-500 ease-out" 
+                                     style="width: ${percent}%"></div>
                             </div>
                         </div>
-                    `).join('')}
+                        ` : ''}
+
+                        <div class="question-header">
+                            <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 leading-tight mb-2 animate-fade-in-up">
+                                ${step.question}
+                            </h2>
+                            ${step.subtitle ? `<p class="text-sm text-gray-500 font-medium animate-fade-in-up delay-100">${step.subtitle}</p>` : ''}
+                        </div>
+                    </div>
+
+                    <!-- Scrollable Body -->
+                    <div id="options-scroll-container" class="flex-grow overflow-y-auto px-6 py-4 custom-scrollbar pb-24">
+                        <div class="animate-fade-in-up delay-200">
+                            ${renderInputType(step)}
+                        </div>
+                    </div>
+
+                    <!-- Fixed Footer -->
+                    <div class="flex-shrink-0 bg-white border-t border-gray-100 px-6 py-4 z-20 flex justify-between items-center bg-opacity-95 backdrop-blur-sm">
+                        <button id="prev-btn-inner" class="text-gray-400 hover:text-gray-600 font-semibold transition-colors ${currentStep === 0 ? 'invisible' : ''}" onclick="handlePrev()">
+                            <i class="fas fa-arrow-left mr-2"></i> Back
+                        </button>
+                        <button id="next-btn-inner" class="bg-gray-900 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:bg-gray-800 transition-all transform hover:-translate-y-1 flex items-center" onclick="handleNext()">
+                            ${currentStep >= surveyData.length - 2 ? 'Submit' : 'Next'} <i class="fas ${currentStep >= surveyData.length - 2 ? 'fa-paper-plane' : 'fa-arrow-right'} ml-2"></i>
+                        </button>
+                    </div>
                 </div>
             `;
+
+            // Re-bind global next/prev buttons to internal ones if needed, or hide external ones
+            // Actually, we are rendering our own buttons inside the card now. 
+            // We should hide the external buttons that might be lingering in the HTML shell if we are replacing the whole container content.
         }
 
-        container.innerHTML = html;
         container.classList.remove('fade-out');
         container.classList.add('fade-in');
 
-        updateNavigation();
-
+        // Focus logic
         if (step.type === 'radio-other' && answers[step.id] && !step.options.includes(answers[step.id])) {
             const input = document.getElementById(`other-input-${step.id}`);
             if (input) input.focus();
         }
-
     }, 400);
 }
 
@@ -345,7 +399,7 @@ function updateSelectionVisuals(qId) {
 }
 
 function selectOther(qId) {
-    const input = document.getElementById(`other-input-${qId}`);
+    const input = document.getElementById(`other - input - ${qId} `);
     if (input) {
         input.focus();
         if (input.value.trim() !== '') {
@@ -418,7 +472,7 @@ function getQuestionNumber() {
 
     const currentQ = currentStep - q1Index + 1;
     const totalQ = surveyData.length - q1Index - 1;
-    return `${currentQ} of ${totalQ}`;
+    return `${currentQ} of ${totalQ} `;
 }
 
 function isValid() {
@@ -457,9 +511,12 @@ async function handleNext() {
         renderStep();
     } else {
         // Submit logic
-        if (nextBtn) {
-            nextBtn.disabled = true;
-            nextBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+        // Submit logic
+        const nextBtnInner = document.getElementById('next-btn-inner');
+
+        if (nextBtnInner) {
+            nextBtnInner.disabled = true;
+            nextBtnInner.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
         }
 
         const success = await submitSurvey();
@@ -469,9 +526,9 @@ async function handleNext() {
             currentStep = nextStep;
             renderStep();
         } else {
-            if (nextBtn) {
-                nextBtn.disabled = false;
-                nextBtn.innerHTML = `Submit <i class="fas fa-paper-plane ml-2"></i>`;
+            if (nextBtnInner) {
+                nextBtnInner.disabled = false;
+                nextBtnInner.innerHTML = `Submit <i class="fas fa-paper-plane ml-2"></i>`;
             }
         }
     }
@@ -495,24 +552,10 @@ function updateNavigation() {
     if (progressBar) progressBar.style.width = percent + '%';
     if (progressText) progressText.innerText = percent + '% completed';
 
-    if (currentStep === 0) {
-        if (nextBtn) nextBtn.innerHTML = 'Start Survey';
-        if (prevBtn) prevBtn.classList.add('hidden');
-    } else if (currentStep === surveyData.length - 1) {
-        if (nextBtn) nextBtn.classList.add('hidden');
-        if (prevBtn) prevBtn.classList.add('hidden');
-    } else {
-        if (nextBtn) {
-            nextBtn.classList.remove('hidden'); // Ensure it's shown
-            if (currentStep === surveyData.length - 2) {
-                nextBtn.innerHTML = `Submit <i class="fas fa-paper-plane ml-2"></i>`;
-            } else {
-                nextBtn.innerHTML = `Next <i class="fas fa-check ml-2"></i>`;
-            }
-        }
-        if (prevBtn) prevBtn.classList.remove('hidden');
-    }
+    // Buttons are re-rendered in renderStep, so we don't need to manually update text here
+    // unless we want to update the fixed header progress
 }
+
 
 // Helper to update debug log
 function updateDebugLog(isSuccess, message, details = '') {
@@ -528,7 +571,7 @@ function updateDebugLog(isSuccess, message, details = '') {
             debugDiv.classList.remove('bg-green-50', 'text-green-600', 'border-green-200');
             debugDiv.classList.add('bg-red-50', 'text-red-600', 'border-red-200');
         }
-        debugLog.innerText = message + (details ? `\n${details}` : '');
+        debugLog.innerText = message + (details ? `\n${details} ` : '');
     }
 }
 
@@ -579,7 +622,7 @@ async function submitSurvey() {
         if (error) throw error;
 
         // Show success message
-        const successMsg = `✅ Submission Successful!\nSession ID: ${sessionId}\nTimestamp: ${new Date().toLocaleString()}`;
+        const successMsg = `✅ Submission Successful!\nSession ID: ${sessionId} \nTimestamp: ${new Date().toLocaleString()} `;
         updateDebugLog(true, successMsg);
 
         return true;
@@ -588,11 +631,11 @@ async function submitSurvey() {
         console.error("Submission error:", error);
 
         // Show error message
-        const errorMsg = `❌ Submission Failed\nError: ${error.message}`;
-        const details = `Details: ${JSON.stringify(error, null, 2)}`;
+        const errorMsg = `❌ Submission Failed\nError: ${error.message} `;
+        const details = `Details: ${JSON.stringify(error, null, 2)} `;
         updateDebugLog(false, errorMsg, details);
 
-        alert(`Submission failed: ${error.message}\n\nPlease try again or contact support.`);
+        alert(`Submission failed: ${error.message} \n\nPlease try again or contact support.`);
         return false;
     }
 }

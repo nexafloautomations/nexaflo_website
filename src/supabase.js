@@ -3,7 +3,9 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 // Robust Initialization
 function initSupabase() {
-    if (window.supabaseClient) return window.supabaseClient;
+    if (window.supabaseClient && typeof window.supabaseClient.from === 'function') {
+        return window.supabaseClient;
+    }
 
     if (window.supabase && window.supabase.createClient) {
         window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);

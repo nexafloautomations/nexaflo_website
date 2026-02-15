@@ -5,7 +5,39 @@
 Chart.defaults.font.family = "'Inter', sans-serif";
 Chart.defaults.color = '#4b5563';
 
-async function initDashboard() {
+const shortLabels = {
+    // Q2 Challenges
+    "Finding relevant job openings across multiple platforms": "Finding Jobs",
+    "Getting rejected by Applicant Tracking Systems (ATS)": "ATS Rejection",
+    "Not receiving feedback or responses from recruiters": "No Feedback",
+    "Difficulty in customizing resume for each job": "Customizing Resume",
+    "Lack of direct contact with hiring managers": "No Direct Contact",
+    "Unclear about required skills for specific roles": "Unclear Skills",
+    "Interview preparation and practice": "Interview Prep",
+
+    // Q4 Features
+    "AI scoring your profile against job requirements & Gap Analysis": "Gap Analysis",
+    "AI scoring your profile against job requirements": "Gap Analysis", // Handle old data
+    "Personalized CV & Cover Letter improvement suggestions": "CV & Cover Letter",
+    "Personalized CV improvement suggestions": "CV Improvement", // Handle old data
+    "Direct contact details of hiring managers/founders": "Hiring Manager Contacts",
+    "AI-generated interview prep with Q&A and flashcards": "AI Interview Prep",
+    "Job recommendations based on your skills": "Smart Job Matches",
+    "Resume building from scratch based on target role": "Resume Builder",
+    "LinkedIn profile strengthening suggestions": "LinkedIn Optimization",
+    "Career path mapping & alternative opportunities": "Career Mapping",
+    "Salary expectations & negotiation tips": "Salary Negotiation",
+
+    // Q6 Switch Reasons
+    "Transparent feedback on why I'm not shortlisted": "Feedback on Rejection",
+    "Direct access to decision-makers": "Direct Access"
+};
+
+function getShortLabel(text) {
+    return shortLabels[text] || text;
+}
+
+function initDashboard() {
     const supabase = window.initSupabase ? window.initSupabase() : window.supabaseClient;
 
     if (!supabase) {
@@ -15,28 +47,29 @@ async function initDashboard() {
 
     try {
         // Fetch all data
-        const { data, error, count } = await supabase
+        supabase
             .from('survey_responses')
-            .select('*', { count: 'exact' });
+            .select('*', { count: 'exact' })
+            .then(({ data, error, count }) => {
+                if (error) throw error;
 
-        if (error) throw error;
+                // Update Total Count
+                document.getElementById('total-responses').innerText = count || data.length;
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('charts-container').classList.remove('hidden');
 
-        // Update Total Count
-        document.getElementById('total-responses').innerText = count || data.length;
-        document.getElementById('loading').classList.add('hidden');
-        document.getElementById('charts-container').classList.remove('hidden');
+                // Process Data
+                const aggregations = aggregateData(data);
 
-        // Process Data
-        const aggregations = aggregateData(data);
-
-        // Render Charts
-        renderPieChart('chart-q1', aggregations.q1, 'Status');
-        renderBarChart('chart-q2', aggregations.q2, 'Challenges', true); // Horizontal Bar
-        renderPieChart('chart-q3', aggregations.q3, 'Satisfaction');
-        renderMatrixChart('chart-q4', aggregations.q4);
-        renderPieChart('chart-q5', aggregations.q5, 'Trust Level');
-        renderBarChart('chart-q6', aggregations.q6, 'Reasons', true);
-        renderBarChart('chart-q7', aggregations.q7, 'Education Field');
+                // Render Charts
+                renderPieChart('chart-q1', aggregations.q1, 'Status');
+                renderBarChart('chart-q2', aggregations.q2, 'Challenges', true); // Horizontal Bar
+                renderPieChart('chart-q3', aggregations.q3, 'Satisfaction');
+                renderMatrixChart('chart-q4', aggregations.q4);
+                renderPieChart('chart-q5', aggregations.q5, 'Trust Level');
+                renderBarChart('chart-q6', aggregations.q6, 'Reasons', true);
+                renderBarChart('chart-q7', aggregations.q7, 'Education Field');
+            });
 
     } catch (err) {
         console.error('Dashboard Error:', err);
@@ -102,7 +135,7 @@ function renderPieChart(canvasId, dataObj, label) {
     new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: Object.keys(dataObj),
+            labels: Object.keys(dataObj).map(l => getShortLabel(l)),
             datasets: [{
                 label: label,
                 data: Object.values(dataObj),
@@ -140,7 +173,7 @@ function renderBarChart(canvasId, dataObj, label, horizontal = false) {
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: Object.keys(dataObj),
+            labels: Object.keys(dataObj).map(l => getShortLabel(l)),
             datasets: [{
                 label: 'Votes',
                 data: Object.values(dataObj),
@@ -151,6 +184,7 @@ function renderBarChart(canvasId, dataObj, label, horizontal = false) {
         options: {
             indexAxis: horizontal ? 'y' : 'x',
             responsive: true,
+            maintainAspectRatio: true,
             scales: {
                 x: { beginAtZero: true },
                 y: { beginAtZero: true }
@@ -159,6 +193,12 @@ function renderBarChart(canvasId, dataObj, label, horizontal = false) {
                 legend: { display: false },
                 tooltip: {
                     callbacks: {
+                        title: function (context) {
+                            // Use full label for tooltip title if possible
+                            const index = context[0].dataIndex;
+                            const key = Object.keys(dataObj)[index];
+                            return key;
+                        },
                         label: function (context) {
                             let label = context.dataset.label || '';
                             if (label) {
@@ -196,12 +236,13 @@ function renderMatrixChart(canvasId, dataObj) {
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: features.map(f => f.length > 30 ? f.substring(0, 30) + '...' : f), // Truncate long labels
+            labels: features.map(f => getShortLabel(f)), // Truncate long labels
             datasets: datasets
         },
         options: {
             indexAxis: 'y',
             responsive: true,
+            maintainAspectRatio: true, // Allow height to grow
             scales: {
                 x: { stacked: true },
                 y: { stacked: true }
@@ -209,7 +250,7 @@ function renderMatrixChart(canvasId, dataObj) {
             plugins: {
                 tooltip: {
                     callbacks: {
-                        title: (items) => features[items[0].dataIndex],
+                        title: (items) => features[items[0].dataIndex], // Show full name on hover
                         label: function (context) {
                             let label = context.dataset.label || '';
                             if (label) {
