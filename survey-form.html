@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL0DY3NC8G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-HL0DY3NC8G');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI in Job Search Survey - Nexaflo Automations</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            /* bg-gray-50 */
+        }
+
+        /* Smooth transitions for questions */
+        .question-container {
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+        }
+
+        .fade-out {
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+        }
+
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Radio/Checkbox Styling to look big and clickable */
+        .option-card {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .option-card:hover {
+            background-color: #f3f4f6;
+            /* bg-gray-100 */
+            border-color: #06b6d4;
+            /* cyan-500 */
+        }
+
+        .option-card.selected {
+            background-color: #ecfeff;
+            /* cyan-50 */
+            border-color: #06b6d4;
+            /* cyan-500 */
+            box-shadow: 0 0 0 1px #06b6d4;
+        }
+
+        .option-key {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #6b7280;
+            margin-right: 12px;
+        }
+
+        .selected .option-key {
+            background-color: #06b6d4;
+            border-color: #06b6d4;
+            color: white;
+        }
+
+        /* Progress Bar Gradient */
+        .progress-gradient {
+            background: linear-gradient(to right, #06b6d4, #8b5cf6);
+        }
+
+        /* Custom Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body class="h-screen flex flex-col overflow-hidden">
+
+    <!-- Progress Bar -->
+    <div class="w-full h-2 bg-gray-200 fixed top-0 z-50">
+        <div id="progress-bar" class="h-full progress-gradient transition-all duration-500 ease-out" style="width: 0%">
+        </div>
+    </div>
+
+    <!-- Header (Logo & Home) -->
+    <div class="w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center shrink-0 z-30 relative">
+        <!-- Logo -->
+        <div>
+            <a href="index.html" class="opacity-80 hover:opacity-100 transition-opacity">
+                <img src="assets/img/logo.png" alt="Nexaflo" class="h-8 w-auto">
+            </a>
+        </div>
+
+        <!-- Home Button -->
+        <div>
+            <a href="index.html"
+                class="flex items-center gap-2 text-gray-500 hover:text-cyan-600 transition-colors font-medium px-4 py-2 rounded-lg hover:bg-gray-100">
+                <i class="fas fa-home"></i>
+                <span class="hidden sm:inline">Home</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="flex-grow flex flex-col w-full relative overflow-y-auto custom-scrollbar scroll-smooth">
+        <div class="w-full max-w-3xl mx-auto px-6 my-auto py-8 pb-24">
+            <!-- Question Container -->
+            <div id="question-container" class="question-container">
+                <!-- Dynamic Content Injected Here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Debug Output (Hidden by default, shown on error) -->
+    <div id="debug-container"
+        class="w-full max-w-3xl mx-auto px-6 hidden mb-20 text-xs text-red-600 font-mono bg-red-50 p-4 rounded border border-red-200">
+        <p class="font-bold">Debug Log:</p>
+        <pre id="debug-log" class="whitespace-pre-wrap"></pre>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="w-full bg-white border-t border-gray-100 py-4 px-6 fixed bottom-0 z-40">
+        <div class="max-w-3xl mx-auto flex justify-between items-center">
+            <div id="progress-text" class="text-sm text-gray-400 font-medium">0% completed</div>
+            <div class="flex gap-3">
+                <button id="prev-btn"
+                    class="hidden px-6 py-2 rounded-lg text-gray-600 font-medium hover:bg-gray-100 transition-colors">
+                    <i class="fas fa-chevron-up mr-2"></i> Previous
+                </button>
+                <button id="next-btn"
+                    class="px-8 py-3 rounded-lg bg-black text-white font-bold text-lg hover:bg-gray-800 transition-transform transform hover:-translate-y-0.5 shadow-lg flex items-center">
+                    Next <i class="fas fa-check ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script -->
+    <script type="module" src="./src/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL0DY3NC8G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-HL0DY3NC8G');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surveys & Feedback - Nexaflo Automations</title>
+    <meta name="description"
+        content="Help us shape the future of automation. Participate in our surveys and provide feedback on Nexaflo Automations.">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+
+
+        /* Hero Gradient */
+        .hero-gradient {
+            background: linear-gradient(to bottom right, #22d3ee, #3b82f6, #8b5cf6);
+        }
+
+        /* Button Hover Effects */
+        .btn-hover {
+            transition: all 0.3s ease;
+        }
+
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Card Hover */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
+
+    <!-- Header will be injected here -->
+    <script src="assets/js/header.js"></script>
+
+    <!-- Hero Section -->
+    <section class="relative bg-white pt-32 pb-20 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-cyan-50 opacity-70"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 animate-fade-in-up">
+                Surveys & <span class="gradient-text">Feedback</span>
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.1s;">
+                Help us shape the future of automation. Your insights drive our innovation.
+            </p>
+        </div>
+    </section>
+
+    <!-- Surveys Grid Section -->
+    <section class="py-16 bg-white flex-grow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Sample Survey Card -->
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 card-hover flex flex-col h-full animate-fade-in-up"
+                    style="animation-delay: 0.2s;">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-6 text-blue-600">
+                        <i class="fas fa-robot text-xl"></i>
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">AI in Job Search</h3>
+                    <p class="text-gray-600 mb-8 flex-grow">
+                        We value your opinion! Let us know what you think about our services and how we can improve.
+                    </p>
+
+                    <div class="flex gap-3 mt-auto">
+                        <button onclick="window.location.href='survey-form.html'"
+                            class="flex-1 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold py-2.5 px-4 rounded-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 text-center">
+                            Fill Survey
+                        </button>
+                        <button
+                            onclick="navigator.clipboard.writeText(window.location.href).then(() => alert('Link copied to clipboard!'))"
+                            class="w-12 h-12 flex items-center justify-center border border-gray-200 rounded-lg text-gray-500 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 transition-all duration-300"
+                            title="Share Survey">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Add more survey cards here -->
+
+            </div>
+
+            <!-- Empty State (Hidden by default, showing if no surveys) -->
+            <div id="no-surveys" class="hidden text-center py-20">
+                <div
+                    class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6 text-gray-400">
+                    <i class="fas fa-clipboard-list text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">No Active Surveys</h3>
+                <p class="text-gray-500">Check back later for new feedback opportunities.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer will be injected here -->
+    <script src="assets/js/footer.js"></script>
+
+</body>
+
+</html>
