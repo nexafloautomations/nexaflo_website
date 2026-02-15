@@ -568,8 +568,6 @@ async function submitSurvey() {
             user_agent: navigator.userAgent,
         };
 
-        const { data, error } = await supabase.from('survey_responses').insert([submissionData]);
-
         console.log("Submitting record:", submissionData);
 
         // Insert new record
