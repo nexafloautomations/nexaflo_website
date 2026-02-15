@@ -1,5 +1,5 @@
 // Supabase Integration
-const supabase = window.supabaseClient;
+// Accessed via window.supabaseClient or window.initSupabase()
 
 // Generate unique numeric session ID for this session (timestamp-based)
 const sessionId = Date.now() + Math.floor(Math.random() * 1000);
@@ -533,6 +533,16 @@ function updateDebugLog(isSuccess, message, details = '') {
 }
 
 async function submitSurvey() {
+    // Lazy load Supabase client
+    const supabase = window.initSupabase ? window.initSupabase() : window.supabaseClient;
+
+    if (!supabase) {
+        const errorMsg = "Database connection not initialized. Please refresh the page.";
+        console.error(errorMsg);
+        alert("Submission failed: " + errorMsg);
+        return false;
+    }
+
     try {
         // Prepare submission data
         const submissionData = {
@@ -557,6 +567,8 @@ async function submitSurvey() {
             // Metadata
             user_agent: navigator.userAgent,
         };
+
+        const { data, error } = await supabase.from('survey_responses').insert([submissionData]);
 
         console.log("Submitting record:", submissionData);
 

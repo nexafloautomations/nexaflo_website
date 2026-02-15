@@ -1,10 +1,18 @@
-const supabase = window.supabaseClient;
+// Supabase Integration
+// Check for client
 
 // Configuration for Charts
 Chart.defaults.font.family = "'Inter', sans-serif";
 Chart.defaults.color = '#4b5563';
 
 async function initDashboard() {
+    const supabase = window.initSupabase ? window.initSupabase() : window.supabaseClient;
+
+    if (!supabase) {
+        document.getElementById('loading').innerHTML = '<p class="text-red-500">Error: Database connection failed. Please refresh.</p>';
+        return;
+    }
+
     try {
         // Fetch all data
         const { data, error, count } = await supabase
