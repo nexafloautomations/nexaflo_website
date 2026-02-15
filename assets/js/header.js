@@ -57,25 +57,7 @@
                     <a href="${getLink('#hero')}" class="text-gray-700 hover:text-cyan-600 transition-colors font-medium">Home</a>
                     <a href="${rootPath}about.html" class="text-gray-700 hover:text-cyan-600 transition-colors font-medium">About Us</a>
                     
-                    <!-- Solutions Dropdown -->
-                    <div class="relative group">
-                        <a href="${rootPath}solutions.html" class="text-gray-700 hover:text-cyan-600 transition-colors font-medium flex items-center">
-                            Solutions
-                        </a>
-                        <!-- Dropdown Menu -->
-                        <div class="absolute left-1/2 transform -translate-x-1/2 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-2 group-hover:translate-y-0">
-                            <div class="py-2">
-                                <a href="${rootPath}solutions.html?industry=semiconductor" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-cyan-600 transition-colors">
-                                    <div class="font-bold">Semiconductor</div>
-                                    <div class="text-xs text-gray-500 mt-0.5">AutoQuote & ChipMatch</div>
-                                </a>
-                                <a href="${rootPath}solutions.html?industry=marketing" class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-purple-600 transition-colors">
-                                    <div class="font-bold">Marketing Agencies</div>
-                                    <div class="text-xs text-gray-500 mt-0.5">StrategyScout</div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    <a href="${rootPath}solutions.html" class="text-gray-700 hover:text-cyan-600 transition-colors font-medium">Solutions</a>
 
                     <a href="${rootPath}surveys.html" class="text-gray-700 hover:text-cyan-600 transition-colors font-medium">Surveys</a>
 
@@ -99,29 +81,7 @@
                 <a href="${getLink('#hero')}" class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-cyan-600 hover:bg-gray-50 rounded-md">Home</a>
                 <a href="${rootPath}about.html" class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-cyan-600 hover:bg-gray-50 rounded-md">About Us</a>
                 
-                <!-- Mobile Solutions Submenu -->
-                <div class="space-y-1">
-                    <div class="px-3 py-2 text-base font-medium text-gray-900">Solutions</div>
-                    
-                    <div class="pl-3 text-xs font-semibold text-gray-400 uppercase tracking-wider mt-2 mb-1">Industries</div>
-                    <a href="${rootPath}solutions.html?industry=semiconductor" class="mobile-link block pl-6 pr-3 py-2 text-sm font-medium text-gray-600 hover:text-cyan-600 hover:bg-gray-50 rounded-md">
-                        Semiconductor
-                    </a>
-                    <a href="${rootPath}solutions.html?industry=marketing" class="mobile-link block pl-6 pr-3 py-2 text-sm font-medium text-gray-600 hover:text-purple-600 hover:bg-gray-50 rounded-md">
-                        Marketing Agencies
-                    </a>
-
-                    <div class="pl-3 text-xs font-semibold text-gray-400 uppercase tracking-wider mt-3 mb-1">Products</div>
-                    <a href="${rootPath}product_pages/autoquote.html" class="mobile-link block pl-6 pr-3 py-2 text-sm font-medium text-gray-600 hover:text-orange-600 hover:bg-gray-50 rounded-md">
-                        AutoQuote
-                    </a>
-                    <a href="${rootPath}product_pages/chipmatch.html" class="mobile-link block pl-6 pr-3 py-2 text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-gray-50 rounded-md">
-                        ChipMatch AI
-                    </a>
-                    <a href="${rootPath}product_pages/strategyscout.html" class="mobile-link block pl-6 pr-3 py-2 text-sm font-medium text-gray-600 hover:text-purple-600 hover:bg-gray-50 rounded-md">
-                        StrategyScout
-                    </a>
-                </div>
+                <a href="${rootPath}solutions.html" class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-cyan-600 hover:bg-gray-50 rounded-md">Solutions</a>
 
                 <a href="${rootPath}surveys.html" class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-cyan-600 hover:bg-gray-50 rounded-md">Surveys</a>
                 <a href="${rootPath}contact.html" class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-cyan-600 hover:bg-gray-50 rounded-md">Contact Us</a>
