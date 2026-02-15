@@ -1,5 +1,5 @@
 // Supabase Integration
-import { supabase } from './supabase.js';
+const supabase = window.supabaseClient;
 
 // Generate unique numeric session ID for this session (timestamp-based)
 const sessionId = Date.now() + Math.floor(Math.random() * 1000);

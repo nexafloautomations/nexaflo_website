@@ -1,4 +1,4 @@
-import { supabase } from './supabase.js';
+const supabase = window.supabaseClient;
 
 // Configuration for Charts
 Chart.defaults.font.family = "'Inter', sans-serif";
