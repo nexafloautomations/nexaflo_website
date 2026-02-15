@@ -10,13 +10,46 @@
         return isHomePage ? hash : `${rootPath}index.html${hash}`;
     };
 
+    // Inject CSS for Header/Footer consistency
+    const style = document.createElement('style');
+    style.textContent = `
+        /* Header & Footer Styles */
+        .backdrop-blur {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        
+        /* Gradients */
+        .gradient-text {
+            background: linear-gradient(to right, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-gradient {
+            background: linear-gradient(135deg, #1e1b4b 0%, #5b21b6 50%, #1e1b4b 100%);
+        }
+
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Scroll Effect Shadow */
+        header.shadow-md {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+    `;
+    document.head.appendChild(style);
+
     const headerHTML = `
     <header class="fixed top-0 w-full bg-white bg-opacity-90 backdrop-blur z-50 border-b border-gray-100 transition-shadow duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <a href="${getLink('#hero')}" class="flex items-center">
-                        <img src="${rootPath}logo.png" alt="Nexaflo Automations Logo" class="h-10 w-auto mr-3" />
+                        <img src="${rootPath}assets/img/logo.png" alt="Nexaflo Automations Logo" class="h-10 w-auto mr-3" />
                     </a>
                 </div>
 
@@ -43,6 +76,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <a href="${rootPath}surveys.html" class="text-gray-700 hover:text-cyan-600 transition-colors font-medium">Surveys</a>
 
                     <a href="${rootPath}contact.html" class="text-gray-700 hover:text-cyan-600 transition-colors font-medium">Contact Us</a>
                 </nav>
@@ -88,6 +123,7 @@
                     </a>
                 </div>
 
+                <a href="${rootPath}surveys.html" class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-cyan-600 hover:bg-gray-50 rounded-md">Surveys</a>
                 <a href="${rootPath}contact.html" class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-cyan-600 hover:bg-gray-50 rounded-md">Contact Us</a>
             </div>
         </div>

@@ -12,8 +12,8 @@ const surveyData = [
     {
         id: 'intro',
         type: 'intro',
-        title: "Survey: AI in Job Search",
-        description: "This survey is part of a B.Com research project studying how students and job seekers in Mumbai perceive AI-powered recruitment tools. Takes only 2-3 minutes.",
+        title: "Survey: Career Building & Job Search with AI",
+        description: "Help us understand your career goals and how AI tools can better support your job search journey. (Takes ~2 minutes)",
         buttonText: "Start Survey"
     },
     {

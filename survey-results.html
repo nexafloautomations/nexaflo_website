@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HL0DY3NC8G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-HL0DY3NC8G');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Results - AI in Job Search</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen text-gray-900">
+
+    <!-- Header Injection -->
+    <div id="header-container"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-12">
+
+        <!-- Page Header -->
+        <div class="mb-12 text-center">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Survey Results</h1>
+            <p class="text-xl text-gray-600">Career Building & Job Search with AI - Live Insights</p>
+
+            <!-- Action Buttons Row -->
+            <div class="mt-8 flex flex-col md:flex-row items-center justify-center gap-4">
+                <div class="inline-flex items-center bg-white px-6 py-3 rounded-full shadow-sm border border-gray-200">
+                    <span class="text-gray-500 mr-2">Total Responses:</span>
+                    <span id="total-responses" class="text-2xl font-bold text-cyan-600">...</span>
+                </div>
+
+                <a href="survey-form.html"
+                    class="inline-flex items-center bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 font-semibold">
+                    <i class="fas fa-pen-to-square mr-2"></i> Take Survey
+                </a>
+
+                <button
+                    onclick="navigator.clipboard.writeText(window.location.href).then(() => alert('Dashboard link copied to clipboard!'))"
+                    class="inline-flex items-center bg-white px-6 py-3 rounded-full shadow-sm border border-gray-200 text-gray-600 hover:text-cyan-600 transition-colors">
+                    <i class="fas fa-share-alt mr-2"></i> Share Results
+                </button>
+            </div>
+
+            <!-- Back Link (Centered below) -->
+            <div class="mt-8">
+                <a href="surveys.html" class="text-gray-500 hover:text-blue-600 font-medium transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Surveys
+                </a>
+            </div>
+
+            <!-- Charts Grid -->
+            <div id="charts-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 hidden">
+
+                <!-- Q1 Status -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">1. Current Status</h3>
+                    <canvas id="chart-q1"></canvas>
+                </div>
+
+                <!-- Q3 Satisfaction -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">3. Campus Placement Satisfaction</h3>
+                    <canvas id="chart-q3"></canvas>
+                </div>
+
+                <!-- Q5 Trust AI -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">5. Trust in AI Resume Analysis</h3>
+                    <canvas id="chart-q5"></canvas>
+                </div>
+
+                <!-- Q7 Education Field -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">7. Field of Education</h3>
+                    <canvas id="chart-q7"></canvas>
+                </div>
+
+                <!-- Q2 Challenges (Span 2) -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 lg:col-span-2">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">2. Job Search Challenges</h3>
+                    <canvas id="chart-q2" height="100"></canvas>
+                </div>
+
+                <!-- Q6 Switch Reasons (Span 2) -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 lg:col-span-2">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-800">6. Reasons to Switch to AI Platform</h3>
+                    <canvas id="chart-q6" height="100"></canvas>
+                </div>
+
+                <!-- Q4 AI Feature Ratings (Full Width Matrix) -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 md:col-span-2 lg:col-span-3">
+                    <h3 class="text-lg font-semibold mb-6 text-gray-800">4. Usefulness of AI Features</h3>
+                    <div class="overflow-x-auto">
+                        <canvas id="chart-q4" height="150"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading" class="text-center py-20">
+                <i class="fas fa-spinner fa-spin text-4xl text-cyan-500 mb-4"></i>
+                <p class="text-gray-500">Loading live data...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="error-message"
+                class="hidden text-center py-20 text-red-500 bg-red-50 rounded-xl border border-red-100">
+                <i class="fas fa-exclamation-circle text-2xl mb-2"></i>
+                <p>Failed to load data. Please try again later.</p>
+            </div>
+
+        </div>
+
+        <!-- Footer Injection -->
+        <script src="assets/js/footer.js"></script>
+        <script src="assets/js/header.js"></script>
+
+        <!-- Dashboard Logic -->
+        <script type="module" src="src/survey-results.js"></script>
+
+</body>
+
+</html>

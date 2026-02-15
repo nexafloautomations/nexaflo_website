@@ -51,6 +51,7 @@
                     <ul class="space-y-2">
                         <li><a href="${getLink('#hero')}" class="text-white opacity-70 hover:opacity-100 hover:text-cyan-300 transition-all text-sm">Home</a></li>
                         <li><a href="${rootPath}about.html" class="text-white opacity-70 hover:opacity-100 hover:text-cyan-300 transition-all text-sm">About Us</a></li>
+                        <li><a href="${rootPath}surveys.html" class="text-white opacity-70 hover:opacity-100 hover:text-cyan-300 transition-all text-sm">Surveys</a></li>
                         <li><a href="${rootPath}contact.html" class="text-white opacity-70 hover:opacity-100 hover:text-cyan-300 transition-all text-sm">Contact Us</a></li>
                     </ul>
                 </div>
