@@ -1,7 +1,13 @@
+import { BotGuard } from './bot-prevention.js';
+
 /**
  * Contact Form Logic
  * Handles validation, phone number formatting, and submission to n8n webhook.
  */
+
+// Initialize Bot Guard
+const botGuard = new BotGuard();
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('booking-form');
@@ -23,6 +29,20 @@ document.addEventListener('DOMContentLoaded', function () {
     if (form) {
         form.addEventListener('submit', function (e) {
             e.preventDefault();
+
+            // Bot Prevention Check
+            const botCheck = botGuard.check(form);
+            if (botCheck.isBot) {
+                console.warn(`Bot detected: ${botCheck.reason}`);
+                // Simulate success to fool the bot
+                form.reset();
+                if (formMessage) {
+                    formMessage.innerText = 'Thank you! We will be in touch shortly.';
+                    formMessage.classList.remove('hidden', 'text-red-600');
+                    formMessage.classList.add('text-green-600');
+                }
+                return;
+            }
 
             // Clear previous errors
             clearErrors();
@@ -131,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         formMessage.innerText = 'Thank you! We will be in touch shortly.';
                         formMessage.classList.remove('hidden', 'text-red-600');
                         formMessage.classList.add('text-green-600');
+                        botGuard.recordSubmission(); // Record successful submission
                     }
                 })
                 .catch(function (error) {

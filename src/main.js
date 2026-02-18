@@ -2,6 +2,9 @@
 // Accessed via window.supabaseClient or window.initSupabase()
 
 // Generate unique numeric session ID for this session (timestamp-based)
+import { BotGuard } from '../assets/js/bot-prevention.js';
+const BotGuardInstance = new BotGuard();
+
 const sessionId = Date.now() + Math.floor(Math.random() * 1000);
 
 
@@ -576,6 +579,23 @@ function updateDebugLog(isSuccess, message, details = '') {
 }
 
 async function submitSurvey() {
+    // Bot Prevention Check (Using a dummy form element or just logic)
+    // For survey, we might not have a form element with the exact honeypot, 
+    // but checks for time and rate limit are still valid.
+    // If we want honeypot in survey, we'd need to inject it into rendering.
+    // For now, let's use time and rate limit.
+    const botCheck = BotGuardInstance.check(document.body); // Passing body just to avoid null, though honeypot check might fail if not present.
+    // Actually, let's just check time and rate limit manually if we don't have the field,  
+    // OR ideally, we inject the field into the survey container.
+
+    // Better approach: use the internal methods or just check result
+    if (botCheck.isBot && botCheck.reason !== 'honeypot') { // Ignore honeypot if not rendered
+        console.warn(`Bot detected in survey: ${botCheck.reason}`);
+        const successMsg = `✅ Submission Successful!\nSession ID: ${sessionId} \nTimestamp: ${new Date().toLocaleString()} `;
+        updateDebugLog(true, successMsg); // Fake success
+        return true;
+    }
+
     // Lazy load Supabase client
     const supabase = window.initSupabase ? window.initSupabase() : window.supabaseClient;
 
@@ -624,6 +644,8 @@ async function submitSurvey() {
         // Show success message
         const successMsg = `✅ Submission Successful!\nSession ID: ${sessionId} \nTimestamp: ${new Date().toLocaleString()} `;
         updateDebugLog(true, successMsg);
+        BotGuardInstance.recordSubmission(); // Record successful submission
+
 
         return true;
 
