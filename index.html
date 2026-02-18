@@ -20,6 +20,8 @@
     <link href="assets/css/styles.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <!-- Typed.js for typing animation -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script type="text/javascript">
         (function () {
             emailjs.init({
@@ -231,17 +233,16 @@
 
         <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
             <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight animate-fade-in-up">
-                We Don't Sell Software.
+                Turning complex problems
                 <br>
-                <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                    We Sell Outcomes.
-                </span>
+                <span>into</span> <span
+                    class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent typing-text"></span>
             </h1>
 
             <p
                 class="text-xl sm:text-2xl text-white opacity-90 mb-12 leading-relaxed max-w-4xl mx-auto font-light animate-fade-in-up delay-200">
-                We identify high-value problems and build proprietary solutions that deliver real outcomes. No hourly
-                billing, no service retainers—just powerful tools crafted by problem solvers, owned by you.
+                Most software solves corporate problems. We solve human ones. From personal productivity to professional
+                growth, we engineer AI solutions that make a tangible difference in how you live and work.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -304,13 +305,13 @@
         <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-8">
-                    <span class="gradient-text">Problem Solvers, Not Service Providers.</span>
+                    <span class="gradient-text">Innovating for the Real World.</span>
                 </h2>
 
                 <div class="max-w-4xl mx-auto">
                     <p class="text-xl sm:text-2xl text-gray-700 leading-relaxed font-light mb-6">
-                        We don't bill for time; we solve for impact. We create proprietary products that eliminate
-                        friction and deliver measurable value across entire industries.
+                        We don't just write code; we solve for impact. We create proprietary products that eliminate
+                        friction and deliver measurable value for people first.
                     </p>
                 </div>
             </div>
@@ -325,8 +326,7 @@
                     </div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">Our Objective</h3>
                     <p class="text-gray-700 leading-relaxed text-center">
-                        Identify real-world problems that cause friction in daily operations and build scalable
-                        solutions that create genuine value for businesses and individuals.
+                        Listen to the real frustrations people face daily and engineer intuitive AI tools to solve them.
                     </p>
                 </div>
 
@@ -339,8 +339,8 @@
                     </div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">Our Vision</h3>
                     <p class="text-gray-700 leading-relaxed text-center">
-                        A future where automation empowers everyone—not just corporations—by reducing complexity,
-                        eliminating inefficiencies, and enhancing how people work and live.
+                        <strong>Empowered Living:</strong> A world where technology handles the complexity, so people
+                        can focus on what matters most.
                     </p>
                 </div>
 
@@ -352,8 +352,8 @@
                     </div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-4 text-center">Our Goal</h3>
                     <p class="text-gray-700 leading-relaxed text-center">
-                        Build a portfolio of high-impact products that serve entire industries—solutions that don't just
-                        automate tasks, but fundamentally improve outcomes.
+                        <strong>Tangible Impact:</strong> Building solutions that don't just optimize businesses, but
+                        genuinely improve lives.
                     </p>
                 </div>
             </div>
@@ -669,8 +669,9 @@
 
                         <!-- Bot Prevention / Honeypot -->
                         <div style="opacity: 0; position: absolute; top: 0; left: 0; height: 0; width: 0; z-index: -1;">
-                             <label for="business_email_2">Business Email 2</label>
-                             <input type="text" name="business_email_2" id="business_email_2" tabindex="-1" autocomplete="off">
+                            <label for="business_email_2">Business Email 2</label>
+                            <input type="text" name="business_email_2" id="business_email_2" tabindex="-1"
+                                autocomplete="off">
                         </div>
 
                         <!-- Submit Button -->
@@ -750,6 +751,21 @@
             heroSection.style.opacity = '1';
             heroSection.style.transform = 'translateY(0)';
         }
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var typed = new Typed('.typing-text', {
+                strings: ['Elegant Solutions.', 'Measurable Results.', 'Real-World Impact.'],
+                typeSpeed: 50,
+                backSpeed: 30,
+                backDelay: 2000,
+                loop: true,
+                showCursor: true,
+                cursorChar: '|',
+                autoInsertCss: true,
+            });
+        });
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
