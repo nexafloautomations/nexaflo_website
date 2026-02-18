@@ -16,7 +16,8 @@
     <title>Nexaflo Automations - AI-Powered Automation Solutions</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS (Local Build) -->
+    <link href="/src/index.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
@@ -203,12 +204,23 @@
     </style>
 </head>
 
-<body class="bg-white text-gray-900">
+<body class="bg-dark-bg text-white selection:bg-primary selection:text-white">
+
 
 
     <!-- Hero Section -->
     <section id="hero"
-        class="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient pt-32 pb-24">
+        class="relative min-h-screen flex items-center justify-center overflow-hidden bg-dark-bg pt-32 pb-24">
+        <!-- Abstract Background -->
+        <div class="absolute inset-0 z-0">
+            <div
+                class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/20 rounded-full blur-[120px] animate-pulse">
+            </div>
+            <div
+                class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary/20 rounded-full blur-[120px] animate-pulse delay-700">
+            </div>
+        </div>
+
         <div class="absolute inset-0 opacity-20">
             <svg class="w-full h-full" viewBox="0 0 1200 800" fill="none">
                 <path d="M0,400 Q300,200 600,400 T1200,400" stroke="white" stroke-width="2" opacity="0.3" />
@@ -221,8 +233,7 @@
             <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight animate-fade-in-up">
                 We Don't Sell Software.
                 <br>
-                <span
-                    style="background: linear-gradient(to right, #fde047, #fb923c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                     We Sell Outcomes.
                 </span>
             </h1>
@@ -235,11 +246,11 @@
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <a href="#about"
-                    class="bg-white text-purple-600 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl btn-hover transition-all duration-300">
+                    class="bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-full text-lg font-bold hover:shadow-[0_0_20px_rgba(6,182,212,0.5)] btn-hover transition-all duration-300 border border-white/10">
                     Learn More
                 </a>
                 <a href="about.html"
-                    class="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-purple-600 transition-all duration-300">
+                    class="glass text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/10 transition-all duration-300">
                     About Us
                 </a>
             </div>
@@ -678,10 +689,10 @@
         }
     </style>
 
-    <script src="assets/js/header.js"></script>
-    <script src="assets/js/footer.js"></script>
+    <script type="module" src="assets/js/header.js"></script>
+    <script type="module" src="assets/js/footer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
-    <script src="assets/js/contact-form.js"></script>
+    <script type="module" src="assets/js/contact-form.js"></script>
     <script>
         function toggleModal() {
             const modal = document.getElementById('booking-modal');
