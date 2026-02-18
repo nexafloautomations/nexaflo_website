@@ -177,6 +177,8 @@ function init() {
     window.updateOther = updateOther;
     window.selectMatrix = selectMatrix;
     window.updateContact = updateContact;
+    window.handleNext = handleNext;
+    window.handlePrev = handlePrev;
 }
 
 // Render Current Step
@@ -589,11 +591,12 @@ async function submitSurvey() {
     // OR ideally, we inject the field into the survey container.
 
     // Better approach: use the internal methods or just check result
-    if (botCheck.isBot && botCheck.reason !== 'honeypot') { // Ignore honeypot if not rendered
+    if (botCheck.isBot) {
         console.warn(`Bot detected in survey: ${botCheck.reason}`);
+        // Simulate success to fool the bot
         const successMsg = `✅ Submission Successful!\nSession ID: ${sessionId} \nTimestamp: ${new Date().toLocaleString()} `;
-        updateDebugLog(true, successMsg); // Fake success
-        return true;
+        updateDebugLog(true, successMsg);
+        return true; // Return true to show success screen, but DO NOT submit to Supabase
     }
 
     // Lazy load Supabase client
