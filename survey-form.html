@@ -111,7 +111,7 @@
     </style>
 </head>
 
-<body class="h-screen flex flex-col overflow-hidden">
+<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
 
     <!-- Progress Bar -->
     <div class="w-full h-2 bg-gray-200 fixed top-0 z-50">
@@ -119,33 +119,13 @@
         </div>
     </div>
 
-    <!-- Header (Logo & Home) -->
-    <div class="w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center shrink-0 z-30 relative">
-        <!-- Logo -->
-        <div>
-            <a href="index.html" class="opacity-80 hover:opacity-100 transition-opacity">
-                <img src="assets/img/logo.png" alt="Nexaflo" class="h-8 w-auto">
-            </a>
-        </div>
+    <!-- Header will be injected here -->
+    <script src="assets/js/header.js"></script>
 
-        <!-- Navigation Buttons -->
-        <div class="flex gap-2">
-            <a href="surveys.html"
-                class="flex items-center gap-2 text-gray-500 hover:text-cyan-600 transition-colors font-medium px-4 py-2 rounded-lg hover:bg-gray-100">
-                <i class="fas fa-arrow-left"></i>
-                <span class="hidden sm:inline">Back to Surveys</span>
-            </a>
-            <a href="index.html"
-                class="flex items-center gap-2 text-gray-500 hover:text-cyan-600 transition-colors font-medium px-4 py-2 rounded-lg hover:bg-gray-100">
-                <i class="fas fa-home"></i>
-                <span class="hidden sm:inline">Home</span>
-            </a>
-        </div>
-    </div>
 
     <!-- Main Content Area -->
-    <div class="flex-grow flex flex-col w-full relative overflow-y-auto custom-scrollbar scroll-smooth">
-        <div class="w-full max-w-3xl mx-auto px-6 my-auto py-8 pb-24">
+    <div class="flex-grow flex flex-col w-full relative">
+        <div class="w-full max-w-3xl mx-auto px-6 py-24 pb-24">
             <!-- Question Container -->
             <div id="question-container" class="question-container">
                 <!-- Dynamic Content Injected Here -->
@@ -174,5 +154,6 @@
     <script type="module" src="src/main.js"></script>
 
 </body>
+
 
 </html>
