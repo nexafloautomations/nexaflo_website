@@ -1,4 +1,15 @@
 (function () {
+    // Dynamic base path resolution for local file:// compatibility
+    let basePath = '';
+    const scripts = document.getElementsByTagName('script');
+    for (let i = 0; i < scripts.length; i++) {
+        const src = scripts[i].getAttribute('src');
+        if (src && src.includes('header.js')) {
+            basePath = src.split('assets/js/header.js')[0];
+            break;
+        }
+    }
+
     const headerHTML = `
 <!-- Header Component -->
 <header
@@ -6,20 +17,20 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <div class="flex items-center">
-                <a href="/" class="flex items-center">
-                    <img src="/assets/img/logo.png" alt="Nexaflo Automations Logo" class="h-10 w-auto mr-3" />
+                <a href="${basePath}index.html" class="flex items-center">
+                    <img src="${basePath}assets/img/logo.png" alt="Nexaflo Automations Logo" class="h-10 w-auto mr-3" />
                 </a>
             </div>
 
             <nav class="hidden md:flex items-center space-x-8">
-                <a href="/#hero" class="text-gray-700 hover:text-cyan-600 transition-colors font-medium">Home</a>
-                <a href="/about.html" class="text-gray-700 hover:text-cyan-600 transition-colors font-medium">About
+                <a href="${basePath}index.html#hero" class="text-gray-700 hover:text-cyan-600 transition-colors font-medium">Home</a>
+                <a href="${basePath}about.html" class="text-gray-700 hover:text-cyan-600 transition-colors font-medium">About
                     Us</a>
-                <a href="/solutions.html"
+                <a href="${basePath}solutions.html"
                     class="text-gray-700 hover:text-cyan-600 transition-colors font-medium">Solutions</a>
-                <a href="/surveys.html"
+                <a href="${basePath}surveys.html"
                     class="text-gray-700 hover:text-cyan-600 transition-colors font-medium">Surveys</a>
-                <a href="/contact.html" class="text-gray-700 hover:text-cyan-600 transition-colors font-medium">Contact
+                <a href="${basePath}contact.html" class="text-gray-700 hover:text-cyan-600 transition-colors font-medium">Contact
                     Us</a>
             </nav>
 
@@ -41,16 +52,16 @@
     <div id="mobile-menu"
         class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-lg max-h-[80vh] overflow-y-auto">
         <div class="px-4 pt-2 pb-6 space-y-2">
-            <a href="/#hero"
+            <a href="${basePath}index.html#hero"
                 class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-cyan-600 hover:bg-gray-50 rounded-md">Home</a>
-            <a href="/about.html"
+            <a href="${basePath}about.html"
                 class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-cyan-600 hover:bg-gray-50 rounded-md">About
                 Us</a>
-            <a href="/solutions.html"
+            <a href="${basePath}solutions.html"
                 class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-cyan-600 hover:bg-gray-50 rounded-md">Solutions</a>
-            <a href="/surveys.html"
+            <a href="${basePath}surveys.html"
                 class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-cyan-600 hover:bg-gray-50 rounded-md">Surveys</a>
-            <a href="/contact.html"
+            <a href="${basePath}contact.html"
                 class="mobile-link block px-3 py-2 text-base font-medium text-gray-700 hover:text-cyan-600 hover:bg-gray-50 rounded-md">Contact
                 Us</a>
         </div>

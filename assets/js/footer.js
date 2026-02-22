@@ -1,4 +1,15 @@
 (function () {
+    // Dynamic base path resolution for local file:// compatibility
+    let basePath = '';
+    const scripts = document.getElementsByTagName('script');
+    for (let i = 0; i < scripts.length; i++) {
+        const src = scripts[i].getAttribute('src');
+        if (src && src.includes('footer.js')) {
+            basePath = src.split('assets/js/footer.js')[0];
+            break;
+        }
+    }
+
     const footerHTML = `
 <!-- Footer Component -->
 <style>
@@ -210,10 +221,10 @@
             <div class="footer-column">
                 <h3 class="footer-heading">Quick Links</h3>
                 <ul class="footer-list">
-                    <li><a href="/#hero" class="footer-link">Home</a></li>
-                    <li><a href="/about.html" class="footer-link">About Us</a></li>
-                    <li><a href="/surveys.html" class="footer-link">Surveys</a></li>
-                    <li><a href="/contact.html" class="footer-link">Contact Us</a></li>
+                    <li><a href="${basePath}index.html#hero" class="footer-link">Home</a></li>
+                    <li><a href="${basePath}about.html" class="footer-link">About Us</a></li>
+                    <li><a href="${basePath}surveys.html" class="footer-link">Surveys</a></li>
+                    <li><a href="${basePath}contact.html" class="footer-link">Contact Us</a></li>
                 </ul>
             </div>
 
@@ -221,7 +232,7 @@
             <div class="footer-column">
                 <h3 class="footer-heading">Solutions</h3>
                 <ul class="footer-list">
-                    <li><a href="/solutions.html" class="footer-link">View Solutions</a></li>
+                    <li><a href="${basePath}solutions.html" class="footer-link">View Solutions</a></li>
                 </ul>
             </div>
 
@@ -229,10 +240,10 @@
             <div class="footer-column">
                 <h3 class="footer-heading">Legal</h3>
                 <ul class="footer-list">
-                    <li><a href="/legal_pages/privacy-policy.html" class="footer-link">Privacy Policy</a></li>
-                    <li><a href="/legal_pages/terms-of-service.html" class="footer-link">Terms of Service</a></li>
-                    <li><a href="/legal_pages/data-deletion.html" class="footer-link">Data Deletion</a></li>
-                    <li><a href="/legal_pages/refund-policy.html" class="footer-link">Refund Policy</a></li>
+                    <li><a href="${basePath}legal_pages/privacy-policy.html" class="footer-link">Privacy Policy</a></li>
+                    <li><a href="${basePath}legal_pages/terms-of-service.html" class="footer-link">Terms of Service</a></li>
+                    <li><a href="${basePath}legal_pages/data-deletion.html" class="footer-link">Data Deletion</a></li>
+                    <li><a href="${basePath}legal_pages/refund-policy.html" class="footer-link">Refund Policy</a></li>
                 </ul>
             </div>
 
@@ -242,7 +253,7 @@
                 <p style="color: rgba(255, 255, 255, 0.65); font-size: 0.9375rem; margin-bottom: 1.5rem; line-height: 1.5;">
                     Ready to automate your future? Let's discuss your next project.
                 </p>
-                <a href="/contact.html" class="footer-cta">
+                <a href="${basePath}contact.html" class="footer-cta">
                     Contact Us
                 </a>
             </div>

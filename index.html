@@ -199,9 +199,15 @@
             transform: scale(1.15);
         }
 
-        .social-icons i {
-            font-size: 24px;
-            color: white;
+        .hero-title {
+            min-height: auto;
+        }
+
+        @media (max-width: 639px) {
+            .hero-title {
+                min-height: 260px;
+                /* Accommodates up to 4 lines of text on small screens */
+            }
         }
     </style>
 </head>
@@ -232,7 +238,8 @@
         </div>
 
         <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight animate-fade-in-up">
+            <h1
+                class="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight animate-fade-in-up hero-title">
                 Turning complex problems
                 <br>
                 <span>into</span> <span
@@ -696,8 +703,8 @@
         }
     </style>
 
-    <script type="module" src="assets/js/header.js"></script>
-    <script type="module" src="assets/js/footer.js"></script>
+    <script src="assets/js/header.js"></script>
+    <script src="assets/js/footer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
     <script type="module" src="assets/js/contact-form.js"></script>
     <script>
